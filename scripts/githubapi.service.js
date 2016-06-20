@@ -1,26 +1,24 @@
-(function() {
+(function () {
 
     'use strict';
 
     angular.module('appTechTest1')
         .service("GitHubApi", GitHubApi);
 
-    GitHubApi.$inject = [];
+    GitHubApi.$inject = ['$http'];
 
-    function GitHubApi() {
-
-        var repos = [
-            {name: 'Repo 1'},
-            {name: 'Repo 2'},
-            {name: 'Repo 3'}
-        ];
+    function GitHubApi($http) {
 
         function get() {
-            return repos;
+            return $http({
+                method: 'GET',
+                url: 'https://api.github.com/users/taylorjg/repos',
+                headers: { 'Authorization': 'Basic dGF5bG9yamc6Qm9sbG9ja3Mx' }
+            });
         }
 
         return {
             get: get
         };
-    } 
-}());
+    }
+} ());
