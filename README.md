@@ -25,4 +25,5 @@ Not sure. Maybe something involving GitHub repos and their REST API.
 * https://angularjs.org/
 * https://developer.github.com/guides/
 * https://developer.github.com/guides/discovering-resources-for-a-user/
+* https://github.com/settings/tokens
 * https://www.npmjs.com/package/http-server

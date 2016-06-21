@@ -10,10 +10,15 @@
     function HomeController($scope, GitHubApi) {
 
         var vm = this;
+        vm.token = '';
+        vm.username = '';
         vm.repos = [];
+        vm.getRepos = getRepos;
 
-        GitHubApi.get().then(function(response) {
-            vm.repos = response.data;
-        });
+        function getRepos() {
+            GitHubApi.getRepos(vm.token, vm.username).then(function(response) {
+                vm.repos = response.data;
+            });
+        }
     }        
 }());

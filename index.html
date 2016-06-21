@@ -10,6 +10,14 @@
 
 <body>
     <div ng-controller='HomeController as vm'>
+        <label for="token">GitHub OAuth token:</label>
+        <input id="token" type="text" size="50" ng-model="vm.token">
+        <br />
+        <label for="username">GitHub Username:</label>
+        <input id="username" type="text" ng-model="vm.username">
+        <br />
+        <button type="button" ng-click="vm.getRepos()">Get Repos</button>
+        <hr />
         <ul>
             <li ng-repeat="repo in vm.repos">{{ repo.name }}</li>
         </ul>

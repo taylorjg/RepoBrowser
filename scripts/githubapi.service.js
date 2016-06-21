@@ -5,20 +5,26 @@
     angular.module('appTechTest1')
         .service("GitHubApi", GitHubApi);
 
-    GitHubApi.$inject = ['$http'];
+    GitHubApi.$inject = ['$http', '$interpolate'];
 
-    function GitHubApi($http) {
+    function GitHubApi($http, $interpolate) {
 
-        function get() {
-            return $http({
-                method: 'GET',
-                url: 'https://api.github.com/users/taylorjg/repos',
-                headers: { 'Authorization': 'Basic dGF5bG9yamc6Qm9sbG9ja3Mx' }
+        function getRepos(token, username) {
+
+            var url = $interpolate('https://api.github.com/users/{{username}}/repos')({ username: username });
+            var authorization = $interpolate('token {{token}}')({ token: token });
+            var config = { headers: { 'Authorization': authorization } };
+            var promise = $http.get(url, config);
+
+            promise.catch(function (error) {
+                console.error('status: %d; statusText: %s', error.status, error.statusText);
             });
+
+            return promise;
         }
 
         return {
-            get: get
+            getRepos: getRepos
         };
     }
 } ());
