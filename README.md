@@ -1,14 +1,13 @@
 
 ## Description
 
-I want to create a small AngularJS 1.x application with a couple of unit tests to prepare for a job interviews.
-In particular, it sounds like LateRooms have a tech test involving AngularJS. I don't have any further information.
+This repo is a little AngularJS 1.x application with a couple of unit tests to prepare for a job interviews.
 
 ## Outline
 
-Not sure. Maybe something involving GitHub repos and their REST API.
+Something fairly simple involving the GitHub API.
 
-* Use the simplest possible web server to serve the static SPA files([http-server](https://www.npmjs.com/package/http-server))
+* Use the simplest possible web server to serve the static SPA files ([http-server](https://www.npmjs.com/package/http-server))
 * Show a list of repos with summary information of each.
 * Click a repo to see more details about the repo
 * Unit tests ?
