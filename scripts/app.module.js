@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    var app = angular.module('appTechTest1', []);        
+    angular.module('appTechTest1', []);
 }());

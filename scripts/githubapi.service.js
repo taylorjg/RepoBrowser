@@ -2,8 +2,7 @@
 
     'use strict';
 
-    angular.module('appTechTest1')
-        .service("GitHubApi", GitHubApi);
+    angular.module('appTechTest1').service("GitHubApi", GitHubApi);
 
     GitHubApi.$inject = ['$http', '$interpolate'];
 

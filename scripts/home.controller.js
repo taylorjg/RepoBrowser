@@ -2,8 +2,7 @@
 
     'use strict';
 
-    var app = angular.module('appTechTest1')
-        .controller('HomeController', HomeController);
+    angular.module('appTechTest1').controller('HomeController', HomeController);
 
     HomeController.$inject = ['$scope', 'GitHubApi'];
 
@@ -11,7 +10,7 @@
 
         var vm = this;
         vm.token = '';
-        vm.username = '';
+        vm.username = 'taylorjg';
         vm.repos = [];
         vm.getRepos = getRepos;
 
