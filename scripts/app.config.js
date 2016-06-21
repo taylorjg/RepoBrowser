@@ -1,8 +1,9 @@
-(function() {
+(function () {
 
     'use strict';
 
-    angular.module('appTechTest1').config(config);
+    angular.module('appTechTest1')
+        .config(config);
 
     config.$inject = ['$httpProvider'];
 
@@ -11,4 +12,4 @@
         $httpProvider.interceptors.push('errorInterceptor');
         $httpProvider.interceptors.push('spinnerInterceptor');
     }
-}());
+} ());

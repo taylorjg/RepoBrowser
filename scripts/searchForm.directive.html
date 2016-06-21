@@ -1,0 +1,17 @@
+<div class="row">
+    <form class="col-md-offset-3 col-md-6" novalidate>
+        <div class="form-group">
+            <label class="control-label" for="token">GitHub OAuth token:</label>
+            <input class="form-control" id="token" type="text" ng-model="vm.token" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="username">GitHub Username:</label>
+            <input class="form-control" id="username" type="text" ng-model="vm.username" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="filter">Filter:</label>
+            <input class="form-control" id="filter" type="text" ng-model="vm.filter">
+        </div>
+        <button class="btn btn-sm btn-primary" type="submit" ng-click="vm.onSubmit()">Get Repos</button>
+    </form>
+</div>

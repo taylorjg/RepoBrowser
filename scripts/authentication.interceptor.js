@@ -5,9 +5,9 @@
     angular.module('appTechTest1')
         .factory(authenticationInterceptor.name, authenticationInterceptor);
 
-    authenticationInterceptor.$inject = ['$log', '$q'];
+    authenticationInterceptor.$inject = ['$log'];
 
-    function authenticationInterceptor($log, $q) {
+    function authenticationInterceptor($log) {
         return {
             'request': function (config) {
                 $log.debug('Adding authentication header to the config object...');

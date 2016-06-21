@@ -5,6 +5,7 @@
     <script src="node_modules/angular/angular.js"></script>
     <script src="scripts/app.module.js"></script>
     <script src="scripts/app.config.js"></script>
+    <script src="scripts/searchForm.directive.js"></script>
     <script src="scripts/spinner.interceptor.js"></script>
     <script src="scripts/error.interceptor.js"></script>
     <script src="scripts/authentication.interceptor.js"></script>
@@ -16,19 +17,7 @@
 <body>
     <div class="container" ng-controller='HomeController as vm'>
 
-        <div class="row">
-            <form class="col-md-offset-3 col-md-6">
-                <div class="form-group">
-                    <label class="control-label" for="token">GitHub OAuth token:</label>
-                    <input class="form-control" id="token" type="text" ng-model="vm.token">
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="username">GitHub Username:</label>
-                    <input class="form-control" id="username" type="text" ng-model="vm.username">
-                </div>
-                <button class="btn btn-sm btn-primary" type="submit" ng-click="vm.getRepos()">Get Repos</button>
-            </form>
-        </div>
+        <div search-form on-submit-2="vm.getRepos(token, username, filter)"></div>
 
         <div class="row">
             <div class="col-md-offset-3 col-md-6">

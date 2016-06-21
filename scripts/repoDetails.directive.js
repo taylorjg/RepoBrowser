@@ -2,22 +2,21 @@
 
     'use strict';
 
-    angular.module('appTechTest1').directive('repoDetails', repoDetails);
+    angular.module('appTechTest1')
+        .directive(repoDetails.name, repoDetails);
 
     repoDetails.$inject = [];
 
     function repoDetails() {
         return {
-            restrict: 'EA',
+            restrict: 'A',
             replace: true,
             scope: {
-            },
-            link: function(scope, element) {
             },
             controller: function() {
                 var vm = this;
             },
-            controllerAs: 'vmRepoDetails',
+            controllerAs: 'vm',
             bindToController: true
         };
     }
