@@ -9,9 +9,11 @@
 
     function repoDetails() {
         return {
-            restrict: 'A',
+            restrict: 'E',
+            templateUrl: 'templates/repoDetails.directive.html',
             replace: true,
             scope: {
+                repo: '='
             },
             controller: function() {
                 var vm = this;

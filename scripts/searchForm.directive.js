@@ -10,7 +10,7 @@
     function searchForm() {
         return {
             restrict: 'A',
-            templateUrl: 'scripts/searchForm.directive.html',
+            templateUrl: 'templates/searchForm.directive.html',
             replace: true,
             scope: {
                 onSubmit: '&'
