@@ -1,1 +1,5 @@
-<span>{{ vm.repo.name }}</span>
+<div>
+    <a href="{{ vm.repo.html_url }}">{{ vm.repo.name }}</a>
+    <div><i>Created: {{ vm.repo.created_at | date:'medium' }}</i></div>
+    <div><i>Updated: {{ vm.repo.updated_at | date:'medium' }}</i></div>
+</div>

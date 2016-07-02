@@ -11,7 +11,7 @@
 
         function getRepos(token, username) {
 
-            var url = $interpolate('https://api.github.com/users/{{username}}/repos')({ username: username });
+            var url = $interpolate('https://api.github.com/users/{{username}}/repos?per_page=10')({ username: username });
             var authorization = $interpolate('token {{token}}')({ token: token });
             var config = { headers: { 'Authorization': authorization } };
             var promise = $http.get(url, config);
