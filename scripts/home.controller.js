@@ -36,7 +36,7 @@
         vm.getRepos = getRepos;
 
         function getRepos(token, username, filter) {
-            GitHubApi.getRepos(token, username).then(function (response) {
+            GitHubApi.getRepos(token, username, 1).then(function (response) {
                 vm.repos = response.data;
             });
         }
