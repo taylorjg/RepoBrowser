@@ -14,12 +14,13 @@ This repo is a little application to browse GitHub repos.
 * Implement filtering (using a filter ?)
 * Show some user details too ? (e.g. fullname, avatar, etc.)
 * Show more repo details
-    * url => new tab/window ?
+    * ~~url~~
+        * => new tab/window ?
     * language
     * size
     * watchers_count
-    * created_at
-    * updated_at
+    * ~~created_at~~
+    * ~~updated_at~~
 * Add a link for each repo to show even more detailed information in a modal
     * issues
     * branches
