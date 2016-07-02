@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('appTechTest1')
+    angular.module('appRepoBrowser')
         .controller(HomeController.name, HomeController);
 
     HomeController.$inject = ['$scope', 'GitHubApi'];

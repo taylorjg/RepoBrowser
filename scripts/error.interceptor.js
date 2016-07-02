@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('appTechTest1')
+    angular.module('appRepoBrowser')
         .factory(errorInterceptor.name, errorInterceptor);
 
     errorInterceptor.$inject = ['$log'];

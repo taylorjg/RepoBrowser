@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('appTechTest1')
+    angular.module('appRepoBrowser')
         .directive(repoDetails.name, repoDetails);
 
     repoDetails.$inject = [];
