@@ -36,13 +36,23 @@ This repo is a little application to browse GitHub repos.
 
 ## Screenshots
 
-### Without an OAuth Token
+### Unauthenticated
 
-![WithoutTokenScreenshot](screenshots/WithoutTokenScreenshot.png)
+From the [Getting Started guide](https://developer.github.com/guides/getting-started/):
 
-### With an OAuth Token
+> Unauthenticated clients can make 60 requests per hour
 
-![WithTokenScreenshot](screenshots/WithTokenScreenshot.png)
+![WithoutTokenScreenshot](screenshots/UnauthenticatedClientScreenshot.png)
+
+### Authentication using an OAuth Token
+
+Again, from the [Getting Started guide](https://developer.github.com/guides/getting-started/):
+
+> When authenticating, you should see your rate limit bumped to 5,000 requests an hour
+
+![WithTokenScreenshot](screenshots/OAuthTokenScreenshot.png)
+
+_(the token in the screenshot is no longer valid)_
 
 ## Links
 
