@@ -14,11 +14,9 @@
         vm.paginationLinks = [];
         vm.getRepos = getRepos;
         vm.getReposPage = getReposPage;
-        vm.token = null;
         vm.username = null;
 
-        function getRepos(token, username, filter) {
-            vm.token = token;
+        function getRepos(username) {
             vm.username = username;
             getReposHelper(1);
         }
@@ -28,10 +26,15 @@
         }
 
         function getReposHelper(page) {
-            GitHubApi.getRepos(vm.token, vm.username, page).then(function (response) {
-                vm.repos = response.data;
-                vm.paginationLinks = response.paginationLinks;
-            });
+            GitHubApi.getRepos(vm.username, page)
+                .then(function (response) {
+                    vm.repos = response.data;
+                    vm.paginationLinks = response.paginationLinks;
+                })
+                .catch(function () {
+                    vm.repos = [];
+                    vm.paginationLinks = [];
+                });
         }
     }
 } ());

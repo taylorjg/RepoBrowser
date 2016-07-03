@@ -5,12 +5,16 @@
     angular.module('appRepoBrowser')
         .factory(authenticationInterceptor.name, authenticationInterceptor);
 
-    authenticationInterceptor.$inject = ['$log'];
+    authenticationInterceptor.$inject = ['$interpolate', 'AuthenticationState'];
 
-    function authenticationInterceptor($log) {
+    function authenticationInterceptor($interpolate, AuthenticationState) {
         return {
             'request': function (config) {
-                $log.debug('Adding authentication header to the config object...');
+                if (AuthenticationState.token) {
+                    var token = AuthenticationState.token;
+                    var authorization = $interpolate('token {{token}}')({ token: token });
+                    config.headers['Authorization'] = authorization;
+                }
                 return config;
             }
         };

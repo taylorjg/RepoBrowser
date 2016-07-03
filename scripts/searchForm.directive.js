@@ -3,13 +3,13 @@
     'use strict';
 
     angular.module('appRepoBrowser')
-        .directive('searchForm', searchForm);
+        .directive(searchForm.name, searchForm);
 
-    searchForm.$inject = [];
+    searchForm.$inject = ['AuthenticationState'];
 
-    function searchForm() {
+    function searchForm(AuthenticationState) {
         return {
-            restrict: 'A',
+            restrict: 'E',
             templateUrl: 'templates/searchForm.directive.html',
             replace: true,
             scope: {
@@ -17,15 +17,10 @@
             },
             controller: function () {
                 var vm = this;
-                vm.token = '';
+                vm.authenticationState = AuthenticationState;
                 vm.username = 'taylorjg';
-                vm.filter = '';
                 vm.onFormSubmit = function () {
-                    vm.onSubmit({
-                        token: vm.token,
-                        username: vm.username,
-                        filter: vm.filter
-                    });
+                    vm.onSubmit({ username: vm.username });
                 }
             },
             controllerAs: 'vm',
