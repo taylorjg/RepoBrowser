@@ -11,30 +11,32 @@
 
         var vm = this;
         vm.repos = [];
-        vm.paginationLinks = [];
+        vm.numPages = 0;
         vm.getRepos = getRepos;
-        vm.getReposPage = getReposPage;
-        vm.rateLimit = RateLimit;
+        vm.currentPage = null;
+        vm.onPageChanged = onPageChanged;
         vm.username = null;
+        vm.rateLimit = RateLimit;
 
         function getRepos(username) {
             vm.username = username;
-            getReposHelper(1);
+            vm.currentPage = 1;
+            getReposHelper();
         }
 
-        function getReposPage(page) {
-            getReposHelper(page);
+        function onPageChanged() {
+            getReposHelper();
         }
 
-        function getReposHelper(page) {
-            GitHubApi.getRepos(vm.username, page)
+        function getReposHelper() {
+            GitHubApi.getRepos(vm.username, vm.currentPage)
                 .then(function (response) {
                     vm.repos = response.data;
-                    vm.paginationLinks = response.paginationLinks;
+                    vm.numPages = response.numPages;
                 })
                 .catch(function () {
                     vm.repos = [];
-                    vm.paginationLinks = [];
+                    vm.numPages = 0;
                 });
         }
     }

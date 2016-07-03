@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    angular.module('appRepoBrowser', []);
+    angular.module('appRepoBrowser', ['ui.bootstrap']);
 }());

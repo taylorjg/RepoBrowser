@@ -15,7 +15,9 @@
     <script src="scripts/githubapi.service.js"></script>
     <script src="scripts/rateLimit.service.js"></script>
     <script src="scripts/authenticationState.service.js"></script>
-    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
@@ -25,7 +27,9 @@
 
         <div class="row" ng-show="vm.repos.length">
             <div class="col-md-offset-2 col-md-8">
+
                 <hr />
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         GitHub Repositories
@@ -38,23 +42,22 @@
                         </ul>
                     </div>
                 </div>
-                <nav class="text-center">
-                    <ul class="pagination">
-                        <li ng-class="{ disabled: !vm.paginationLinks.prev }">
-                            <a ng-if="!vm.paginationLinks.prev">&laquo;</a>
-                            <a ng-if="vm.paginationLinks.prev" href="" ng-click="vm.getReposPage(vm.paginationLinks.prevPageNumber)">&laquo;</a>
-                        </li>
-                        <li ng-class="{ active: paginationLink.current }" ng-repeat="paginationLink in vm.paginationLinks">
-                            <a ng-if="paginationLink.current">{{ paginationLink.pageNumber }}</a>
-                            <a ng-if="!paginationLink.current" href="" ng-click="vm.getReposPage(paginationLink.pageNumber)">{{ paginationLink.pageNumber }}</a>
-                        </li>
-                        <li ng-class="{ disabled: !vm.paginationLinks.next }">
-                            <a ng-if="!vm.paginationLinks.next">&raquo;</a>
-                            <a ng-if="vm.paginationLinks.next" href="" ng-click="vm.getReposPage(vm.paginationLinks.nextPageNumber)">&raquo;</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class=pull-right>
+
+                <div class="text-center">
+                    <uib-pagination
+                        force-ellipses="true"
+                        boundary-links="true"
+                        max-size="10"
+                        items-per-page="5"
+                        num-pages="vm.numPages"
+                        total-items="5 * vm.numPages"
+                        ng-model="vm.currentPage"
+                        ng-change="vm.onPageChanged()">
+                    </uib-pagination>
+                </div>
+
+
+                <div class="pull-right">
                     <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
                 </div>
             </div>

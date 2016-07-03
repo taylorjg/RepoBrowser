@@ -14,9 +14,6 @@
                     RateLimit.limit = Number(response.headers('X-RateLimit-Limit'));
                     RateLimit.remaining = Number(response.headers('X-RateLimit-Remaining'));
                     RateLimit.reset = new Date(Number(response.headers('X-RateLimit-Reset')) * 1000);
-                    console.log('X-RateLimit-Limit:', RateLimit.limit);
-                    console.log('X-RateLimit-Remaining:', RateLimit.remaining);
-                    console.log('X-RateLimit-Reset:', RateLimit.reset);
                 }
                 return response;
             }

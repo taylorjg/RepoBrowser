@@ -4,7 +4,9 @@
   "description": "Angular 1.x app to browse GitHub repos",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "angular-ui-bootstrap": "^1.3.3",
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
     "http-server": "^0.9.0"
