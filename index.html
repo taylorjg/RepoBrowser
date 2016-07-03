@@ -21,7 +21,7 @@
         <div search-form on-submit="vm.getRepos(token, username, filter)"></div>
 
         <div class="row" ng-show="vm.repos.length">
-            <div class="col-md-offset-3 col-md-6">
+            <div class="col-md-offset-2 col-md-8">
                 <hr />
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </div>
-                <nav>
+                <nav class="text-center">
                     <ul class="pagination">
                         <li ng-class="{ disabled: !vm.paginationLinks.prev }">
                             <a ng-if="!vm.paginationLinks.prev">&laquo;</a>
