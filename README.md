@@ -7,7 +7,7 @@ This repo is a little application to browse GitHub repos.
 * ~~Implement authentication HTTP interceptor~~
 * Implement spinner HTTP interceptor
 * Implement error handling HTTP interceptor
-* Display rate limit/remaining values
+* ~~Display rate limit/remaining values~~
 * ~~Add ability to page through the repos~~
     * Select page size ?
 * Add ability to sort repos

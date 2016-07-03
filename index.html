@@ -13,6 +13,7 @@
     <script src="scripts/authentication.interceptor.js"></script>
     <script src="scripts/home.controller.js"></script>
     <script src="scripts/githubapi.service.js"></script>
+    <script src="scripts/rateLimit.service.js"></script>
     <script src="scripts/authenticationState.service.js"></script>
     <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.css">
 </head>
@@ -53,6 +54,9 @@
                         </li>
                     </ul>
                 </nav>
+                <div class=pull-right>
+                    <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
+                </div>
             </div>
         </div>
 
