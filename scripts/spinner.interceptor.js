@@ -5,17 +5,25 @@
     angular.module('appRepoBrowser')
         .factory(spinnerInterceptor.name, spinnerInterceptor);
 
-    spinnerInterceptor.$inject = ['$log'];
+    spinnerInterceptor.$inject = ['$rootScope', '$q'];
 
-    function spinnerInterceptor($log) {
+    function spinnerInterceptor($rootScope, $q) {
         return {
             'request': function(config) {
-                $log.debug('Start spinning...');
+                $rootScope.$broadcast('GITHUBAPI_BEGIN');
                 return config;
             },
+            'requestError': function(rejection) {
+                $rootScope.$broadcast('GITHUBAPI_END');
+                return $q.reject(rejection);
+            },
             'response': function(response) {
-                $log.debug('Stop spinning...');
+                $rootScope.$broadcast('GITHUBAPI_END');
                 return response;
+            },
+            'responseError': function(rejection) {
+                $rootScope.$broadcast('GITHUBAPI_END');
+                return $q.reject(rejection);
             }
         };
     }
