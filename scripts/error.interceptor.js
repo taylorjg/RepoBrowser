@@ -5,13 +5,13 @@
     angular.module('appRepoBrowser')
         .factory(errorInterceptor.name, errorInterceptor);
 
-    errorInterceptor.$inject = ['$log'];
+    errorInterceptor.$inject = ['$q', '$rootScope'];
 
-    function errorInterceptor($log) {
+    function errorInterceptor($q, $rootScope) {
         return {
-            'response': function (response) {
-                $log.debug('Checking the response object for errors...');
-                return response;
+            'responseError': function (rejection) {
+                $rootScope.$broadcast("GITHUBAPI_ERROR", rejection);
+                return $q.reject(rejection);
             }
         };
     }
