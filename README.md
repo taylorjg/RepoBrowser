@@ -34,6 +34,16 @@ This repo is a little application to browse GitHub repos.
 * Convert JavaScript code to ES2015
     * Add gulpfile etc.
 
+## Screenshots
+
+### Without an OAuth Token
+
+![WithoutTokenScreenshot](screenshots/WithoutTokenScreenshot.png)
+
+### With an OAuth Token
+
+![WithTokenScreenshot](screenshots/WithTokenScreenshot.png)
+
 ## Links
 
 * https://angularjs.org/
