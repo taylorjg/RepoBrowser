@@ -37,9 +37,17 @@
                 </div>
                 <nav>
                     <ul class="pagination">
+                        <li ng-class="{ disabled: !vm.paginationLinks.prev }">
+                            <a ng-if="!vm.paginationLinks.prev">&laquo;</a>
+                            <a ng-if="vm.paginationLinks.prev" href="" ng-click="vm.getReposPage(vm.paginationLinks.prevPageNumber)">&laquo;</a>
+                        </li>
                         <li ng-class="{ active: paginationLink.current }" ng-repeat="paginationLink in vm.paginationLinks">
                             <a ng-if="paginationLink.current">{{ paginationLink.pageNumber }}</a>
-                            <a ng-if="!paginationLink.current" href="{{ paginationLink.href }}">{{ paginationLink.pageNumber }}</a>
+                            <a ng-if="!paginationLink.current" href="" ng-click="vm.getReposPage(paginationLink.pageNumber)">{{ paginationLink.pageNumber }}</a>
+                        </li>
+                        <li ng-class="{ disabled: !vm.paginationLinks.next }">
+                            <a ng-if="!vm.paginationLinks.next">&raquo;</a>
+                            <a ng-if="vm.paginationLinks.next" href="" ng-click="vm.getReposPage(vm.paginationLinks.nextPageNumber)">&raquo;</a>
                         </li>
                     </ul>
                 </nav>

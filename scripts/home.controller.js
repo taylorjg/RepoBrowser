@@ -11,33 +11,26 @@
 
         var vm = this;
         vm.repos = [];
-        vm.paginationLinks = [
-            {
-                pageNumber: '1',
-                href: 'https://api.github.com/user/676165/repos?per_page=10&page=1'
-            },
-            {
-                pageNumber: '4',
-                href: 'https://api.github.com/user/676165/repos?per_page=10&page=4'
-            },
-            {
-                pageNumber: '5',
-                current: true
-            },
-            {
-                pageNumber: '6',
-                href: 'https://api.github.com/user/676165/repos?per_page=10&page=6'
-            },
-            {
-                pageNumber: '14',
-                href: 'https://api.github.com/user/676165/repos?per_page=10&page=14'
-            },
-        ];
+        vm.paginationLinks = [];
         vm.getRepos = getRepos;
+        vm.getReposPage = getReposPage;
+        vm.token = null;
+        vm.username = null;
 
         function getRepos(token, username, filter) {
-            GitHubApi.getRepos(token, username, 1).then(function (response) {
+            vm.token = token;
+            vm.username = username;
+            getReposHelper(1);
+        }
+
+        function getReposPage(page) {
+            getReposHelper(page);
+        }
+
+        function getReposHelper(page) {
+            GitHubApi.getRepos(vm.token, vm.username, page).then(function (response) {
                 vm.repos = response.data;
+                vm.paginationLinks = response.paginationLinks;
             });
         }
     }
