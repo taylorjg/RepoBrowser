@@ -11,5 +11,6 @@
         $httpProvider.interceptors.push('authenticationInterceptor');
         $httpProvider.interceptors.push('errorInterceptor');
         $httpProvider.interceptors.push('spinnerInterceptor');
+        $httpProvider.interceptors.push('rateLimitInterceptor');
     }
 } ());
