@@ -17,17 +17,17 @@ This repo is a little application to browse GitHub repos.
 * Show more repo details
     * ~~url~~
         * => new tab/window ?
-    * language
-    * size
-    * watchers_count
+    * ~~language~~
     * ~~created_at~~
     * ~~updated_at~~
-* Add a link for each repo to show even more detailed information in a modal
+* Add a link for each repo to show even more detailed information in a modal/card
     * issues
     * branches
     * languages
     * releases
     * list of files
+* Switch to a cards-based UI ?
+    * See [BootCard](http://bootcards.org/)
 * Add unit tests (Karma/Jasmine)
 * Add end-to-end tests (Protractor)
 * Support deep linking
@@ -37,6 +37,9 @@ This repo is a little application to browse GitHub repos.
 ## Links
 
 * https://angularjs.org/
+* http://getbootstrap.com/
+* https://angular-ui.github.io/bootstrap/
+* http://bootcards.org/
 * https://developer.github.com/guides/
 * https://developer.github.com/guides/discovering-resources-for-a-user/
 * https://developer.github.com/guides/traversing-with-pagination/
