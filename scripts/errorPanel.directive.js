@@ -17,8 +17,8 @@
 
                 var vm = this;
                 vm.show = false;
-                vm.errorMessage = '';
-                
+                vm.errorMessage = null;
+
                 $rootScope.$on('GITHUBAPI_ERROR', function(_, rejection) {
                     vm.show = true;
                     if (rejection.data && rejection.data.message) {
@@ -30,6 +30,11 @@
                             statusText: rejection.statusText
                         }); 
                     }
+                });
+
+                $rootScope.$on('GITHUBAPI_CLEAR_ERROR', function() {
+                    vm.show = false;
+                    vm.errorMessage = null;
                 });
             },
             controllerAs: 'vm',
