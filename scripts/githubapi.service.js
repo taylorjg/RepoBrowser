@@ -18,25 +18,20 @@
                 baseUrl: GITHUBAPI_BASE_URL,
                 username: username
             });
+
             var config = {
                 params: {
                     per_page: PAGE_SIZE,
                     page: page
                 }
             };
-            var promise = $http.get(url, config);
 
-            return promise
-                .then(function (response) {
-                    return {
-                        data: response.data,
-                        paginationLinks: getPaginationLinks(response, page)
-                    };
-                })
-                .catch(function (error) {
-                    $log.error('status: %d; statusText: %s', error.status, error.statusText);
-                    return $q.reject(error);
-                });
+            return $http.get(url, config).then(function (response) {
+                return {
+                    data: response.data,
+                    paginationLinks: getPaginationLinks(response, page)
+                };
+            });
         }
 
         function getPaginationLinks(response, page) {

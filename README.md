@@ -4,10 +4,10 @@ This repo is a little application to browse GitHub repos.
 
 ## TODO
 
-* Implement authentication HTTP interceptor
+* ~~Implement authentication HTTP interceptor~~
 * Implement spinner HTTP interceptor
 * Implement error handling HTTP interceptor
-* Add ability to page through the repos
+* ~~Add ability to page through the repos~~
     * Select page size ?
 * Add ability to sort repos
     * e.g. by created_at/updated_at ascending/descending
@@ -29,6 +29,7 @@ This repo is a little application to browse GitHub repos.
     * list of files
 * Add unit tests (Karma/Jasmine)
 * Add end-to-end tests (Protractor)
+* Support deep linking
 * Convert JavaScript code to ES2015
     * Add gulpfile etc.
 

@@ -22,6 +22,13 @@
                 vm.onFormSubmit = function () {
                     vm.onSubmit({ username: vm.username });
                 }
+                vm.feedbackClasses = function () {
+                    return {
+                        'has-feedback': AuthenticationState.getTokenIsGood() || AuthenticationState.getTokenIsBad(),
+                        'has-success': AuthenticationState.getTokenIsGood(),
+                        'has-error': AuthenticationState.getTokenIsBad(),
+                    };
+                }
             },
             controllerAs: 'vm',
             bindToController: true
