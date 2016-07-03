@@ -17,7 +17,7 @@
                 }
                 return config;
             },
-            'response': function(response) {
+            'response': function (response) {
                 if (AuthenticationState.token) {
                     AuthenticationState.setTokenIsGood();
                 }

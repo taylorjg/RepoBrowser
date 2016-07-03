@@ -22,7 +22,8 @@
             var config = {
                 params: {
                     per_page: PAGE_SIZE,
-                    page: page
+                    page: page,
+                    _: new Date().getTime()
                 }
             };
 
