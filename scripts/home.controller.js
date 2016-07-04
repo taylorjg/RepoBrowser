@@ -5,9 +5,9 @@
     angular.module('appRepoBrowser')
         .controller(HomeController.name, HomeController);
 
-    HomeController.$inject = ['$scope', 'GitHubApi', 'RateLimit'];
+    HomeController.$inject = ['GitHubApi', 'RateLimit'];
 
-    function HomeController($scope, GitHubApi, RateLimit) {
+    function HomeController(GitHubApi, RateLimit) {
 
         var vm = this;
         vm.repos = [];
