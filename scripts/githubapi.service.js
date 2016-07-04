@@ -5,23 +5,20 @@
     angular.module('appRepoBrowser')
         .service(GitHubApi.name, GitHubApi);
 
-    GitHubApi.$inject = ['$http', '$interpolate', '$q', '$log'];
+    GitHubApi.$inject = ['$http', '$interpolate', '$q', 'constants'];
 
-    function GitHubApi($http, $interpolate, $q, $log) {
-
-        var PAGE_SIZE = 5;
-        var GITHUBAPI_BASE_URL = 'https://api.github.com';
+    function GitHubApi($http, $interpolate, $q, constants) {
 
         function getRepos(username, page) {
 
             var url = $interpolate('{{baseUrl}}/users/{{username}}/repos')({
-                baseUrl: GITHUBAPI_BASE_URL,
+                baseUrl: constants.GITHUBAPI_BASE_URL,
                 username: username
             });
 
             var config = {
                 params: {
-                    per_page: PAGE_SIZE,
+                    per_page: constants.PAGE_SIZE,
                     page: page,
                     _: new Date().getTime()
                 }

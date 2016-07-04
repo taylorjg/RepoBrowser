@@ -3,7 +3,12 @@
 
 <head>
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/bootcards/dist/js/bootcards.js"></script>
+
     <script src="scripts/app.module.js"></script>
+    <script src="scripts/app.constants.js"></script>
     <script src="scripts/app.config.js"></script>
     <script src="scripts/searchForm.directive.js"></script>
     <script src="scripts/repoDetails.directive.js"></script>
@@ -17,20 +22,21 @@
     <script src="scripts/githubapi.service.js"></script>
     <script src="scripts/rateLimit.service.js"></script>
     <script src="scripts/authenticationState.service.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootcards/dist/css/bootcards-desktop.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div class="container" ng-controller='HomeController as vm'>
+    <div class="container bootcards-container" ng-controller='HomeController as vm'>
 
         <error-panel></error-panel>
 
         <search-form on-submit="vm.getRepos(username)"></search-form>
 
-        <div class="row" ng-show="vm.repos.length">
+        <div class="row" ng-show="vm.repos.length && false">
             <div class="col-md-offset-2 col-md-8">
 
                 <hr />
@@ -55,9 +61,9 @@
                         boundary-link-numbers="true"
                         rotate="true"
                         max-size="8"
-                        items-per-page="5"
+                        items-per-page="vm.pageSize"
                         num-pages="vm.numPages"
-                        total-items="5 * vm.numPages"
+                        total-items="vm.pageSize * vm.numPages"
                         ng-model="vm.currentPage"
                         ng-change="vm.onPageChanged()">
                     </uib-pagination>
@@ -65,6 +71,57 @@
 
                 <div class="pull-right">
                     <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row" ng-show="vm.repos.length">
+            <div class="col-sm-5 bootcards-list">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">GitHub Repositories</h3>
+                    </div>
+                    <div class="list-group">
+                        <a class="list-group-item" ng-class="{ active: repo.name == vm.selectedRepo.name }" href="#" ng-repeat="repo in vm.repos" ng-click="vm.onRepoSelected(repo)">
+                            <h4 class="list-group-item-heading">{{ repo.name }}</h4>
+                            <p class="list-group-item-text">{{ repo.description }}</p>
+                        </a>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="text-center">
+                            <uib-pagination
+                                class="pagination-sm"
+                                force-ellipses="true"
+                                boundary-links="true"
+                                boundary-link-numbers="false"
+                                rotate="true"
+                                max-size="5"
+                                items-per-page="vm.pageSize"
+                                num-pages="vm.numPages"
+                                total-items="vm.pageSize * vm.numPages"
+                                ng-model="vm.currentPage"
+                                ng-change="vm.onPageChanged()">
+                            </uib-pagination>
+                        </div>
+                        <div class="text-center">
+                            <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 bootcards-cards">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ vm.selectedRepo.name }}</h3>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item">{{ vm.selectedRepo.description }}</div>
+                        <div class="list-group-item">{{ vm.selectedRepo.created_at | date:'medium' }}</div>
+                        <div class="list-group-item">{{ vm.selectedRepo.updated_at | date:'medium' }}</div>
+                        <div class="list-group-item">{{ vm.selectedRepo.language }}</div>
+                    </div>
                 </div>
             </div>
         </div>
