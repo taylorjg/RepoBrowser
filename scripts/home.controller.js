@@ -11,31 +11,33 @@
 
         var vm = this;
         vm.repos = [];
+        vm.user = null;
         vm.pageSize = constants.PAGE_SIZE;
         vm.numPages = 0;
-        vm.getRepos = getRepos;
         vm.currentPage = null;
         vm.selectedRepo = null;
-        vm.onPageChanged = onPageChanged;
-        vm.onRepoSelected = onRepoSelected; 
         vm.username = null;
         vm.rateLimit = RateLimit;
+        vm.onLookup = onLookup;
+        vm.onRepoSelected = onRepoSelected; 
+        vm.onPageChanged = onPageChanged;
 
-        function getRepos(username) {
+        function onLookup(username) {
             vm.username = username;
             vm.currentPage = 1;
-            getReposHelper();
-        }
-
-        function onPageChanged() {
-            getReposHelper();
+            getRepos(username);
+            getUser(username);
         }
 
         function onRepoSelected(repo) {
             vm.selectedRepo = repo;
         }
 
-        function getReposHelper() {
+        function onPageChanged() {
+            getRepos();
+        }
+
+        function getRepos() {
             GitHubApi.getRepos(vm.username, vm.currentPage)
                 .then(function (response) {
                     vm.repos = response.data;
@@ -46,6 +48,16 @@
                     vm.repos = [];
                     vm.numPages = 0;
                     vm.selectedRepo = null;
+                });
+        }
+
+        function getUser(username) {
+            GitHubApi.getUser(vm.username)
+                .then(function (response) {
+                    vm.user = response.data;
+                })
+                .catch(function () {
+                    vm.user = null;
                 });
         }
     }

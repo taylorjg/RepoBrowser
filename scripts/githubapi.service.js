@@ -32,6 +32,22 @@
             });
         }
 
+        function getUser(username) {
+
+            var url = $interpolate('{{baseUrl}}/users/{{username}}')({
+                baseUrl: constants.GITHUBAPI_BASE_URL,
+                username: username
+            });
+
+            var config = {
+                params: {
+                    _: new Date().getTime()
+                }
+            };
+
+            return $http.get(url, config);
+        }
+
         function getNumPages(response, page) {
             var links = parseLinkHeader(response);
             var lastLink = links.find(link => link.rel === 'last');
@@ -57,7 +73,8 @@
         }
 
         return {
-            getRepos: getRepos
+            getRepos: getRepos,
+            getUser: getUser
         };
     }
 } ());

@@ -32,56 +32,41 @@
 <body>
     <div class="container bootcards-container" ng-controller='HomeController as vm'>
 
-        <error-panel></error-panel>
+        <div class="row">
+            <div class="col-sm-12">
+                <error-panel></error-panel>
+            </div>
+        </div>
 
-        <search-form on-submit="vm.getRepos(username)"></search-form>
-
-        <div class="row" ng-show="vm.repos.length && false">
-            <div class="col-md-offset-2 col-md-8">
-
-                <hr />
-
+        <div class="row">
+            <div class="col-sm-6">
+                <search-form on-submit="vm.onLookup(username)"></search-form>
+            </div>
+            <div class="col-sm-6 bootcards-cards" ng-show="vm.user">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        GitHub Repositories
+                        <h3 class="panel-title">{{ vm.user.login }} ({{ vm.user.name }}, {{ vm.user.location }})</h3>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="repo in vm.repos">
-                                <repo-details repo="repo"></repo-details>
-                            </li>
-                        </ul>
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <img ng-src="{{ vm.user.avatar_url }}" class="img-rounded pull-left">
+                            <p>{{ vm.user.created_at | date:'medium' }}</p>
+                            <p>{{ vm.user.updated_at | date:'medium' }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="text-center">
-                    <uib-pagination
-                        force-ellipses="true"
-                        boundary-links="true"
-                        boundary-link-numbers="true"
-                        rotate="true"
-                        max-size="8"
-                        items-per-page="vm.pageSize"
-                        num-pages="vm.numPages"
-                        total-items="vm.pageSize * vm.numPages"
-                        ng-model="vm.currentPage"
-                        ng-change="vm.onPageChanged()">
-                    </uib-pagination>
-                </div>
-
-                <div class="pull-right">
-                    <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
                 </div>
             </div>
         </div>
 
-        <hr />
-
         <div class="row" ng-show="vm.repos.length">
-            <div class="col-sm-5 bootcards-list">
+
+            <hr />
+            
+            <div class="col-sm-6 bootcards-list">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">GitHub Repositories</h3>
+                        <h3 class="panel-title">GitHub Repos</h3>
                     </div>
                     <div class="list-group">
                         <a class="list-group-item" ng-class="{ active: repo.name == vm.selectedRepo.name }" href="#" ng-repeat="repo in vm.repos" ng-click="vm.onRepoSelected(repo)">
@@ -111,7 +96,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-7 bootcards-cards">
+
+            <div class="col-sm-6 bootcards-cards">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ vm.selectedRepo.name }}</h3>
