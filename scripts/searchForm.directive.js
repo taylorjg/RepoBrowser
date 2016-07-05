@@ -5,9 +5,9 @@
     angular.module('appRepoBrowser')
         .directive(searchForm.name, searchForm);
 
-    searchForm.$inject = ['AuthenticationState'];
+    searchForm.$inject = ['AuthenticationState', 'constants'];
 
-    function searchForm(AuthenticationState) {
+    function searchForm(AuthenticationState, constants) {
         return {
             restrict: 'E',
             templateUrl: 'templates/searchForm.directive.html',
@@ -19,8 +19,12 @@
                 var vm = this;
                 vm.authenticationState = AuthenticationState;
                 vm.username = 'taylorjg';
+                vm.pageSize = constants.DEFAULT_PAGE_SIZE;
                 vm.onFormSubmit = function () {
-                    vm.onSubmit({ username: vm.username });
+                    vm.onSubmit({
+                        username: vm.username,
+                        pageSize: vm.pageSize
+                    });
                 }
                 vm.feedbackClasses = function () {
                     return {

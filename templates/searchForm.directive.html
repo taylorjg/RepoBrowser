@@ -9,6 +9,24 @@
         <label class="control-label" for="username">GitHub Username:</label>
         <input class="form-control" id="username" type="text" ng-model="vm.username" required>
     </div>
+    <div class="form-group">
+        <label class="control-label">Page Size:</label>
+        &nbsp;
+        <label>
+            <input id="radioPageSize5" type="radio" name="pageSize" value="5" ng-model="vm.pageSize">
+            5
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioPageSize10" type="radio" name="pageSize" value="10" ng-model="vm.pageSize">
+            10
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioPageSize25" type="radio" name="pageSize" value="25" ng-model="vm.pageSize">
+            25
+        </label>
+    </div>
     <div>
         <button class="btn btn-sm btn-primary" type="submit" ng-click="vm.onFormSubmit()">Get Repos</button>
         <spinner></spinner>

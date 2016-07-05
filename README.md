@@ -9,11 +9,12 @@ This repo is a little application to browse GitHub repos.
 * ~~Implement error handling HTTP interceptor~~
 * ~~Display rate limit/remaining values~~
 * ~~Add ability to page through the repos~~
-    * Select page size ?
+    * ~~Select page size ?~~
 * Add ability to sort repos
-    * e.g. by created_at/updated_at ascending/descending
-* Implement filtering (using a filter ?)
-* Show some user details too ? (e.g. fullname, avatar, etc.)
+    * by: created / updated / pushed / full_name, direction: asc/desc
+    * See [List user repositories](https://developer.github.com/v3/repos/#list-user-repositories)
+* Implement filtering
+* ~~Show some user details too ? (e.g. fullname, avatar, etc.)~~
 * Show more repo details
     * ~~url~~
         * => new tab/window ?
@@ -26,8 +27,8 @@ This repo is a little application to browse GitHub repos.
     * languages
     * releases
     * list of files
-* Switch to a cards-based UI ?
-    * See [BootCard](http://bootcards.org/)
+* ~~Switch to a cards-based UI ?~~
+    * ~~See [BootCard](http://bootcards.org/)~~
 * Add unit tests (Karma/Jasmine)
 * Add end-to-end tests (Protractor)
 * Support deep linking
@@ -42,17 +43,23 @@ From the [Getting Started guide](https://developer.github.com/guides/getting-sta
 
 > Unauthenticated clients can make 60 requests per hour
 
-![WithoutTokenScreenshot](screenshots/UnauthenticatedClientScreenshot.png)
+![Unauthenticated](screenshots/UnauthenticatedScreenshot.png)
 
 ### Authentication using an OAuth Token
 
-Again, from the [Getting Started guide](https://developer.github.com/guides/getting-started/):
+From the [Getting Started guide](https://developer.github.com/guides/getting-started/):
 
 > When authenticating, you should see your rate limit bumped to 5,000 requests an hour
 
-![WithTokenScreenshot](screenshots/OAuthTokenScreenshot.png)
+#### Valid OAuth Token
+
+![ValidOAuthToken](screenshots/ValidOAuthTokenScreenshot.png)
 
 _(the token in the screenshot is no longer valid)_
+
+#### Invalid OAuth Token
+
+![InvalidOAuthToken](screenshots/InvalidOAuthTokenScreenshot.png)
 
 ## Links
 

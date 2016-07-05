@@ -8,7 +8,7 @@
     function constants() {
         return {
             GITHUBAPI_BASE_URL: 'https://api.github.com',
-            PAGE_SIZE: 10
+            DEFAULT_PAGE_SIZE: 10
         };
     }
 } ());

@@ -12,7 +12,7 @@
         var vm = this;
         vm.repos = [];
         vm.user = null;
-        vm.pageSize = constants.PAGE_SIZE;
+        vm.pageSize = constants.DEFAULT_PAGE_SIZE;
         vm.numPages = 0;
         vm.currentPage = null;
         vm.selectedRepo = null;
@@ -22,8 +22,9 @@
         vm.onRepoSelected = onRepoSelected; 
         vm.onPageChanged = onPageChanged;
 
-        function onLookup(username) {
+        function onLookup(username, pageSize) {
             vm.username = username;
+            vm.pageSize = pageSize;
             vm.currentPage = 1;
             getRepos(username);
             getUser(username);
@@ -38,7 +39,7 @@
         }
 
         function getRepos() {
-            GitHubApi.getRepos(vm.username, vm.currentPage)
+            GitHubApi.getRepos(vm.username, vm.pageSize, vm.currentPage)
                 .then(function (response) {
                     vm.repos = response.data;
                     vm.numPages = response.numPages;
