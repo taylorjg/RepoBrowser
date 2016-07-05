@@ -42,16 +42,28 @@
             <div class="col-sm-6">
                 <search-form on-submit="vm.onLookup(username)"></search-form>
             </div>
-            <div class="col-sm-6 bootcards-cards" ng-show="vm.user">
+            <div class="col-sm-6" ng-show="vm.user">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ vm.user.login }} ({{ vm.user.name }}, {{ vm.user.location }})</h3>
                     </div>
                     <div class="list-group">
                         <div class="list-group-item">
-                            <img ng-src="{{ vm.user.avatar_url }}" class="img-rounded pull-left">
-                            <p>{{ vm.user.created_at | date:'medium' }}</p>
-                            <p>{{ vm.user.updated_at | date:'medium' }}</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <img ng-src="{{ vm.user.avatar_url }}" class="img-rounded pull-left">
+                                    <h4 class="list-group-item-heading">Created</h4>
+                                    <p class="list-group-item-text">{{ vm.user.created_at | date:'mediumDate' }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Updated</h4>
+                                    <p class="list-group-item-text">{{ vm.user.updated_at | date:'mediumDate' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" ng-show="vm.user.blog">
+                            <h4 class="list-group-item-heading">Blog</h4>
+                            <a class="list-group-item-text" ng-href="{{ vm.user.blog }}">{{ vm.user.blog }}</a>
                         </div>
                     </div>
                 </div>
@@ -90,9 +102,6 @@
                                 ng-change="vm.onPageChanged()">
                             </uib-pagination>
                         </div>
-                        <div class="text-center">
-                            <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -103,12 +112,52 @@
                         <h3 class="panel-title">{{ vm.selectedRepo.name }}</h3>
                     </div>
                     <div class="list-group">
-                        <div class="list-group-item">{{ vm.selectedRepo.description }}</div>
-                        <div class="list-group-item">{{ vm.selectedRepo.created_at | date:'medium' }}</div>
-                        <div class="list-group-item">{{ vm.selectedRepo.updated_at | date:'medium' }}</div>
-                        <div class="list-group-item">{{ vm.selectedRepo.language }}</div>
+                        <div ng-show="vm.selectedRepo.description" class="list-group-item">{{ vm.selectedRepo.description }}</div>
+                        <div ng-show="!vm.selectedRepo.description" class="list-group-item"><i>(no description)</i></div>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Created</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.created_at | date:'mediumDate' }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Updated</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.updated_at | date:'mediumDate' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Language</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.language }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Forks</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.forks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Stars</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.stargazers_count }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 class="list-group-item-heading">Watchers</h4>
+                                    <p class="list-group-item-text">{{ vm.selectedRepo.watchers }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="vm.rateLimit.limit">
+            <div class="text-center">
+                <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
             </div>
         </div>
 
