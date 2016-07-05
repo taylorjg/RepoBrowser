@@ -83,7 +83,7 @@
                     <div class="list-group">
                         <a class="list-group-item" ng-class="{ active: repo.name == vm.selectedRepo.name }" href="#" ng-repeat="repo in vm.repos" ng-click="vm.onRepoSelected(repo)">
                             <h4 class="list-group-item-heading">{{ repo.name }}</h4>
-                            <p class="list-group-item-text">{{ repo.description }}</p>
+                            <p class="list-group-item-text" style="width: 96%">{{ repo.description }}</p>
                         </a>
                     </div>
                     <div class="panel-footer">
