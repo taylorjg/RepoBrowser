@@ -85,7 +85,12 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <h4 class="list-group-item-heading">{{ repo.name }}</h4>
-                                    <small class="list-group-item-text" style="width: 96%">{{ repo.description }}</small>
+                                    <small class="list-group-item-text">
+                                        <ng-switch on="!!repo.description">
+                                            <span ng-switch-when="true">{{ repo.description }}</span>
+                                            <span ng-switch-default><i>(no description)</i></span>
+                                        </ng-switch>
+                                    </small>
                                 </div>
                                 <div class="col-sm-3">
                                     <span class="small pull-right"><i>{{ repo.language }}</i></span>
@@ -119,8 +124,12 @@
                         <h3 class="panel-title">{{ vm.selectedRepo.name }}</h3>
                     </div>
                     <div class="list-group">
-                        <div ng-show="vm.selectedRepo.description" class="list-group-item">{{ vm.selectedRepo.description }}</div>
-                        <div ng-show="!vm.selectedRepo.description" class="list-group-item"><i>(no description)</i></div>
+                        <div class="list-group-item">
+                            <ng-switch on="!!vm.selectedRepo.description">
+                                <span ng-switch-when="true">{{ vm.selectedRepo.description }}</span>
+                                <span ng-switch-default><i>(no description)</i></span>
+                            </ng-switch>
+                        </div>
                         <div class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-6">
