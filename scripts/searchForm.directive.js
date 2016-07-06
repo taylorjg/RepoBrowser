@@ -19,10 +19,14 @@
                 var vm = this;
                 vm.authenticationState = AuthenticationState;
                 vm.username = 'taylorjg';
+                vm.sortBy = constants.DEFAULT_SORT_BY;
+                vm.sortDirection = constants.DEFAULT_SORT_DIRECTION;
                 vm.pageSize = constants.DEFAULT_PAGE_SIZE;
                 vm.onFormSubmit = function () {
                     vm.onSubmit({
                         username: vm.username,
+                        sortBy: vm.sortBy,
+                        sortDirection: vm.sortDirection,
                         pageSize: vm.pageSize
                     });
                 }

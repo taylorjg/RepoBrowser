@@ -10,12 +10,12 @@ This repo is a little application to browse GitHub repos.
 * ~~Display rate limit/remaining values~~
 * ~~Add ability to page through the repos~~
     * ~~Select page size ?~~
-* Add ability to sort repos
-    * by: created / updated / pushed / full_name, direction: asc/desc
-    * See [List user repositories](https://developer.github.com/v3/repos/#list-user-repositories)
+* ~~Add ability to sort repos~~
+    * ~~by: created / updated / pushed / full_name, direction: asc/desc~~
+    * ~~See [List user repositories](https://developer.github.com/v3/repos/#list-user-repositories)~~
 * Implement filtering
 * ~~Show some user details too ? (e.g. fullname, avatar, etc.)~~
-* Show more repo details
+* ~~Show more repo details~~
     * ~~url~~
         * => new tab/window ?
     * ~~language~~

@@ -40,7 +40,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <search-form on-submit="vm.onLookup(username, pageSize)"></search-form>
+                <search-form on-submit="vm.onLookup(username, sortBy, sortDirection, pageSize)"></search-form>
             </div>
             <div class="col-sm-6" ng-show="vm.user">
                 <div class="panel panel-default">

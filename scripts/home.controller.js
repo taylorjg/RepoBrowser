@@ -12,6 +12,8 @@
         var vm = this;
         vm.repos = [];
         vm.user = null;
+        vm.sortBy = constants.DEFAULT_SORT_BY;
+        vm.sortDirection = constants.DEFAULT_SORT_DIRECTION;
         vm.pageSize = constants.DEFAULT_PAGE_SIZE;
         vm.numPages = 0;
         vm.currentPage = null;
@@ -22,8 +24,10 @@
         vm.onRepoSelected = onRepoSelected;
         vm.onPageChanged = onPageChanged;
 
-        function onLookup(username, pageSize) {
+        function onLookup(username, sortBy, sortDirection, pageSize) {
             vm.username = username;
+            vm.sortBy = sortBy;
+            vm.sortDirection = sortDirection;
             vm.pageSize = pageSize;
             vm.currentPage = 1;
             getRepos(username);
@@ -45,7 +49,7 @@
         }
 
         function getRepos() {
-            GitHubApi.getRepos(vm.username, vm.pageSize, vm.currentPage)
+            GitHubApi.getRepos(vm.username, vm.sortBy, vm.sortDirection, vm.pageSize, vm.currentPage)
                 .then(function (response) {
                     vm.repos = response.data;
                     vm.numPages = response.numPages;

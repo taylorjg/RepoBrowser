@@ -9,7 +9,7 @@
 
     function GitHubApi($http, $interpolate, $q, constants) {
 
-        function getRepos(username, pageSize, page) {
+        function getRepos(username, sortBy, sortDirection, pageSize, page) {
 
             var url = $interpolate('{{baseUrl}}/users/{{username}}/repos')({
                 baseUrl: constants.GITHUBAPI_BASE_URL,
@@ -18,6 +18,8 @@
 
             var config = {
                 params: {
+                    sort: sortBy,
+                    direction: sortDirection,
                     per_page: pageSize,
                     page: page,
                     _: new Date().getTime()

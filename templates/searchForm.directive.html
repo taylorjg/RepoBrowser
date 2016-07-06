@@ -10,6 +10,42 @@
         <input class="form-control" id="username" type="text" ng-model="vm.username" required>
     </div>
     <div class="form-group">
+        <label class="control-label">Sort By:</label>
+        &nbsp;
+        <label>
+            <input id="radioSortByFullName" type="radio" name="sortBy" value="full_name" ng-model="vm.sortBy">
+            Full Name
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioSortByCreated" type="radio" name="sortBy" value="created" ng-model="vm.sortBy">
+            Created
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioSortByUpdated" type="radio" name="sortBy" value="updated" ng-model="vm.sortBy">
+            Updated
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioSortByPushed" type="radio" name="sortBy" value="pushed" ng-model="vm.sortBy">
+            Pushed
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Sort Direction:</label>
+        &nbsp;
+        <label>
+            <input id="radioSortDirectionAscending" type="radio" name="sortDirection" value="asc" ng-model="vm.sortDirection">
+            Ascending
+        </label>
+        &nbsp;
+        <label>
+            <input id="radioSortDirectionDescending" type="radio" name="sortDirection" value="desc" ng-model="vm.sortDirection">
+            Descending
+        </label>
+    </div>
+    <div class="form-group">
         <label class="control-label">Page Size:</label>
         &nbsp;
         <label>
