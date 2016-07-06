@@ -19,7 +19,7 @@
         vm.username = null;
         vm.rateLimit = RateLimit;
         vm.onLookup = onLookup;
-        vm.onRepoSelected = onRepoSelected; 
+        vm.onRepoSelected = onRepoSelected;
         vm.onPageChanged = onPageChanged;
 
         function onLookup(username, pageSize) {
@@ -32,6 +32,12 @@
 
         function onRepoSelected(repo) {
             vm.selectedRepo = repo;
+            if (!vm.selectedRepo.languages) {
+                GitHubApi.getLanguages(vm.selectedRepo)
+                    .then(function (languages) {
+                        vm.selectedRepo.languages = languages;
+                    });
+            }
         }
 
         function onPageChanged() {
@@ -43,7 +49,7 @@
                 .then(function (response) {
                     vm.repos = response.data;
                     vm.numPages = response.numPages;
-                    vm.selectedRepo = vm.repos[0];
+                    onRepoSelected(vm.repos[0]);
                 })
                 .catch(function () {
                     vm.repos = [];

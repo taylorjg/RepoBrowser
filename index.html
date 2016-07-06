@@ -136,24 +136,23 @@
                         <div class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Language</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.language }}</p>
-                                </div>
-                                <div class="col-sm-6">
                                     <h4 class="list-group-item-heading">Forks</h4>
                                     <p class="list-group-item-text">{{ vm.selectedRepo.forks }}</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row">
                                 <div class="col-sm-6">
                                     <h4 class="list-group-item-heading">Stars</h4>
                                     <p class="list-group-item-text">{{ vm.selectedRepo.stargazers_count }}</p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading">Languages</h4>
+                            <div class="row" ng-repeat="language in vm.selectedRepo.languages">
                                 <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Watchers</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.watchers }}</p>
+                                    <p class="list-group-item-text">{{ language.name }}</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="list-group-item-text">{{ language.percentage }}%</p>
                                 </div>
                             </div>
                         </div>
