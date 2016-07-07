@@ -27,23 +27,27 @@
                 return config;
             },
             'response': function (response) {
-                if (AuthenticationState.token) {
-                    AuthenticationState.setTokenIsGood();
-                }
-                else {
-                    AuthenticationState.reset();
+                if (isGutHubApiRequest(response.config)) {
+                    if (AuthenticationState.token) {
+                        AuthenticationState.setTokenIsGood();
+                    }
+                    else {
+                        AuthenticationState.reset();
+                    }
                 }
                 return response;
             },
             'responseError': function (rejection) {
-                if (AuthenticationState.token) {
-                    if (rejection.status === 401)
-                        AuthenticationState.setTokenIsBad();
-                    else
-                        AuthenticationState.setTokenIsGood();
-                }
-                else {
-                    AuthenticationState.reset();
+                if (isGutHubApiRequest(rejection.config)) {
+                    if (AuthenticationState.token) {
+                        if (rejection.status === 401)
+                            AuthenticationState.setTokenIsBad();
+                        else
+                            AuthenticationState.setTokenIsGood();
+                    }
+                    else {
+                        AuthenticationState.reset();
+                    }
                 }
                 return $q.reject(rejection);
             }
