@@ -21,8 +21,7 @@
                     sort: sortBy,
                     direction: sortDirection,
                     per_page: pageSize,
-                    page: page,
-                    _: new Date().getTime()
+                    page: page
                 }
             };
 
@@ -36,16 +35,20 @@
 
         function getLanguages(repo) {
             return $http.get(repo.languages_url).then(function (response) {
-                const ks = Object.keys(response.data);
-                const vs = ks.map(k => response.data[k]);
-                const total = vs.reduce((acc, v) => acc + v);
-                return ks.map((k, i) => {
-                    const percentage = vs[i] * 100 / total;
-                    return {
-                        name: k,
-                        percentage: Math.round(percentage)
-                    };
-                });
+                return languagesObjectToLanguagesArray(response.data);
+            });
+        }
+
+        function languagesObjectToLanguagesArray(languagesObject) {
+            const ks = Object.keys(languagesObject);
+            const vs = ks.map(k => languagesObject[k]);
+            const total = vs.reduce((acc, v) => acc + v);
+            return ks.map((k, i) => {
+                const percentage = vs[i] * 100 / total;
+                return {
+                    name: k,
+                    percentage: Math.round(percentage)
+                };
             });
         }
 
@@ -56,13 +59,7 @@
                 username: username
             });
 
-            var config = {
-                params: {
-                    _: new Date().getTime()
-                }
-            };
-
-            return $http.get(url, config);
+            return $http.get(url);
         }
 
         function getNumPages(response, page) {
