@@ -24,16 +24,22 @@ This repo is a little application to browse GitHub repos.
 * Add a link for each repo to show even more detailed information in a modal/card
     * issues
     * branches
-    * languages
+    * ~~languages~~
     * releases
-    * list of files
+* ~~Make the error panel dismissible~~
 * ~~Switch to a cards-based UI ?~~
     * ~~See [BootCard](http://bootcards.org/)~~
+* Refactor chunks of markup into directives
+    * User details
+    * Repo summary
+    * Repo details
+* Build in some caching re GitHub API calls ?
+    * See [Conditional requests](https://developer.github.com/v3/#conditional-requests) 
 * Add unit tests (Karma/Jasmine)
 * Add end-to-end tests (Protractor)
 * Support deep linking
 * Convert JavaScript code to ES2015
-    * Add gulpfile etc.
+    * Webpack/gulp etc.
 
 ## Screenshots
 

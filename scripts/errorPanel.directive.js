@@ -11,13 +11,18 @@
         return {
             restrict: 'E',
             templateUrl: 'templates/errorPanel.directive.html',
-            replace: true,
+            replace: false,
             scope: {},
             controller: function() {
 
                 var vm = this;
                 vm.show = false;
                 vm.errorMessage = null;
+                vm.onClose = onClose;
+
+                function onClose() {
+                    vm.show = false;
+                }
 
                 $rootScope.$on('GITHUBAPI_ERROR', function(_, rejection) {
                     vm.show = true;
