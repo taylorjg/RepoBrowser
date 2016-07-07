@@ -10,10 +10,6 @@
     <script src="scripts/app.module.js"></script>
     <script src="scripts/app.constants.js"></script>
     <script src="scripts/app.config.js"></script>
-    <script src="scripts/searchForm.directive.js"></script>
-    <script src="scripts/repoDetails.directive.js"></script>
-    <script src="scripts/errorPanel.directive.js"></script>
-    <script src="scripts/spinner.directive.js"></script>
     <script src="scripts/spinner.interceptor.js"></script>
     <script src="scripts/error.interceptor.js"></script>
     <script src="scripts/rateLimit.interceptor.js"></script>
@@ -22,6 +18,12 @@
     <script src="scripts/githubapi.service.js"></script>
     <script src="scripts/rateLimit.service.js"></script>
     <script src="scripts/authenticationState.service.js"></script>
+    <script src="scripts/searchForm.directive.js"></script>
+    <script src="scripts/repoSummary.directive.js"></script>
+    <script src="scripts/repoDetails.directive.js"></script>
+    <script src="scripts/userDetails.directive.js"></script>
+    <script src="scripts/errorPanel.directive.js"></script>
+    <script src="scripts/spinner.directive.js"></script>
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootcards/dist/css/bootcards-desktop.css">
@@ -31,72 +33,28 @@
 
 <body>
     <div class="container bootcards-container" ng-controller='HomeController as vm'>
-
         <div class="row">
             <div class="col-sm-12">
                 <error-panel></error-panel>
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-6">
                 <search-form on-submit="vm.onLookup(username, sortBy, sortDirection, pageSize)"></search-form>
             </div>
             <div class="col-sm-6" ng-show="vm.user">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ vm.user.login }} ({{ vm.user.name }}, {{ vm.user.location }})</h3>
-                    </div>
-                    <div class="list-group">
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <img ng-src="{{ vm.user.avatar_url }}" class="img-rounded pull-left">
-                                    <h4 class="list-group-item-heading">Created</h4>
-                                    <p class="list-group-item-text">{{ vm.user.created_at | date:'mediumDate' }}</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Updated</h4>
-                                    <p class="list-group-item-text">{{ vm.user.updated_at | date:'mediumDate' }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item" ng-show="vm.user.blog">
-                            <h4 class="list-group-item-heading">Blog</h4>
-                            <a class="list-group-item-text" ng-href="{{ vm.user.blog }}">{{ vm.user.blog }}</a>
-                        </div>
-                    </div>
-                </div>
+                <user-details user="vm.user"></user-details>
             </div>
         </div>
-
         <div class="row" ng-show="vm.repos.length">
-
             <hr />
-            
             <div class="col-sm-6 bootcards-list">
-
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">GitHub Repos</h3>
                     </div>
                     <div class="list-group">
-                        <a class="list-group-item" ng-class="{ active: repo.name == vm.selectedRepo.name }" href="#" ng-repeat="repo in vm.repos" ng-click="vm.onRepoSelected(repo)">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h4 class="list-group-item-heading">{{ repo.name }}</h4>
-                                    <small class="list-group-item-text">
-                                        <ng-switch on="!!repo.description">
-                                            <span ng-switch-when="true">{{ repo.description }}</span>
-                                            <span ng-switch-default><i>(no description)</i></span>
-                                        </ng-switch>
-                                    </small>
-                                </div>
-                                <div class="col-sm-3">
-                                    <span class="small pull-right"><i>{{ repo.language }}</i></span>
-                                </div>
-                            </div>
-                        </a>
+                        <repo-summary ng-repeat="repo in vm.repos" repo="repo" selected-repo="vm.selectedRepo" on-repo-selected="vm.onRepoSelected(repo)"></repo-summary>
                     </div>
                     <div class="panel-footer">
                         <div class="text-center">
@@ -117,65 +75,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-6 bootcards-cards">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ vm.selectedRepo.name }}</h3>
-                    </div>
-                    <div class="list-group">
-                        <div class="list-group-item">
-                            <ng-switch on="!!vm.selectedRepo.description">
-                                <span ng-switch-when="true">{{ vm.selectedRepo.description }}</span>
-                                <span ng-switch-default><i>(no description)</i></span>
-                            </ng-switch>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Created</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.created_at | date:'mediumDate' }}</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Updated</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.updated_at | date:'mediumDate' }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Forks</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.forks }}</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4 class="list-group-item-heading">Stars</h4>
-                                    <p class="list-group-item-text">{{ vm.selectedRepo.stargazers_count }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <h4 class="list-group-item-heading">Languages</h4>
-                            <div class="row" ng-repeat="language in vm.selectedRepo.languages">
-                                <div class="col-sm-6">
-                                    <p class="list-group-item-text">{{ language.name }}</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <p class="list-group-item-text">{{ language.percentage }}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <repo-details repo="vm.selectedRepo"></repo-details>
             </div>
         </div>
-
         <div class="row" ng-show="vm.rateLimit.limit">
             <div class="text-center">
                 <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
             </div>
         </div>
-
     </div>
 </body>
 

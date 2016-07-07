@@ -1,6 +1,48 @@
-<div>
-    <a href="{{ vm.repo.html_url }}">{{ vm.repo.name }}</a>
-    <div class="pull-right">{{ vm.repo.language }}</div>
-    <div><i>Created: {{ vm.repo.created_at | date:'medium' }}</i></div>
-    <div><i>Updated: {{ vm.repo.updated_at | date:'medium' }}</i></div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ vm.repo.name }}</h3>
+    </div>
+    <div class="list-group">
+        <div class="list-group-item">
+            <ng-switch on="!!vm.repo.description">
+                <span ng-switch-when="true">{{ vm.repo.description }}</span>
+                <span ng-switch-default><i>(no description)</i></span>
+            </ng-switch>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="list-group-item-heading">Created</h4>
+                    <p class="list-group-item-text">{{ vm.repo.created_at | date:'mediumDate' }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="list-group-item-heading">Updated</h4>
+                    <p class="list-group-item-text">{{ vm.repo.updated_at | date:'mediumDate' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="list-group-item-heading">Forks</h4>
+                    <p class="list-group-item-text">{{ vm.repo.forks }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="list-group-item-heading">Stars</h4>
+                    <p class="list-group-item-text">{{ vm.repo.stargazers_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <h4 class="list-group-item-heading">Languages</h4>
+            <div class="row" ng-repeat="language in vm.repo.languages">
+                <div class="col-sm-6">
+                    <p class="list-group-item-text">{{ language.name }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="list-group-item-text">{{ language.percentage }}%</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

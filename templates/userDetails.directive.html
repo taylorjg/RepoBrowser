@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ vm.user.login }} ({{ vm.user.name }}, {{ vm.user.location }})</h3>
+    </div>
+    <div class="list-group">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img ng-src="{{ vm.user.avatar_url }}" class="img-rounded pull-left">
+                    <h4 class="list-group-item-heading">Created</h4>
+                    <p class="list-group-item-text">{{ vm.user.created_at | date:'mediumDate' }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="list-group-item-heading">Updated</h4>
+                    <p class="list-group-item-text">{{ vm.user.updated_at | date:'mediumDate' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" ng-show="vm.user.blog">
+            <h4 class="list-group-item-heading">Blog</h4>
+            <a class="list-group-item-text" ng-href="{{ vm.user.blog }}">{{ vm.user.blog }}</a>
+        </div>
+    </div>
+</div></div>

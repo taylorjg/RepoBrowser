@@ -29,10 +29,10 @@ This repo is a little application to browse GitHub repos.
 * ~~Make the error panel dismissible~~
 * ~~Switch to a cards-based UI ?~~
     * ~~See [BootCard](http://bootcards.org/)~~
-* Refactor chunks of markup into directives
-    * User details
-    * Repo summary
-    * Repo details
+* ~~Refactor chunks of markup into directives~~
+    * ~~User details~~
+    * ~~Repo summary~~
+    * ~~Repo details~~
 * Build in some caching re GitHub API calls ?
     * See [Conditional requests](https://developer.github.com/v3/#conditional-requests) 
 * Add unit tests (Karma/Jasmine)

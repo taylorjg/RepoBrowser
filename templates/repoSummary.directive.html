@@ -1,0 +1,16 @@
+<a class="list-group-item" ng-class="{ active: vm.repo.name == vm.selectedRepo.name }" href="#" ng-click="vm.onRepoSelected({repo: vm.repo})">
+    <div class="row">
+        <div class="col-sm-8">
+            <h4 class="list-group-item-heading">{{ vm.repo.name }}</h4>
+            <small class="list-group-item-text">
+                <ng-switch on="!!vm.repo.description">
+                    <span ng-switch-when="true">{{ vm.repo.description }}</span>
+                    <span ng-switch-default><i>(no description)</i></span>
+                </ng-switch>
+            </small>
+        </div>
+        <div class="col-sm-3">
+            <span class="small pull-right"><i>{{ vm.repo.language }}</i></span>
+        </div>
+    </div>
+</a>
