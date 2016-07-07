@@ -14,6 +14,11 @@ This repo is a little application to browse GitHub repos.
     * ~~by: created / updated / pushed / full_name, direction: asc/desc~~
     * ~~See [List user repositories](https://developer.github.com/v3/repos/#list-user-repositories)~~
 * Implement filtering
+    * Ideally, we would want the filtering to be done by the GitHub API
+    * Can search for repos via the "Search GitHub" box on https://github.com/
+        * See [Searching repositories](https://help.github.com/articles/searching-repositories/)
+        * e.g. you can search for "user:taylorjg check in:name"
+    * See [Search](https://developer.github.com/v3/search/)
 * ~~Show some user details too ? (e.g. fullname, avatar, etc.)~~
 * ~~Show more repo details~~
     * ~~url~~
