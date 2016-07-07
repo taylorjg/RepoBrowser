@@ -13,9 +13,10 @@
         var tokenIsBad = false;
 
         return {
-            token: '',
-            getTokenIsGood: function () { return tokenIsGood; },
-            getTokenIsBad: function () { return tokenIsBad; },
+            getTokenIsGood: function () {
+                return tokenIsGood; },
+            getTokenIsBad: function () {
+                return tokenIsBad; },
             setTokenIsGood: function () {
                 tokenIsGood = true;
                 tokenIsBad = false;
