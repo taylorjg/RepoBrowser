@@ -16,7 +16,7 @@
     <script src="scripts/authentication.interceptor.js"></script>
     <script src="scripts/home.controller.js"></script>
     <script src="scripts/githubapi.service.js"></script>
-    <script src="scripts/rateLimit.service.js"></script>
+    <script src="scripts/rateLimitState.service.js"></script>
     <script src="scripts/authenticationState.service.js"></script>
     <script src="scripts/searchForm.directive.js"></script>
     <script src="scripts/repoSummary.directive.js"></script>
@@ -79,9 +79,11 @@
                 <repo-details repo="vm.selectedRepo"></repo-details>
             </div>
         </div>
-        <div class="row" ng-show="vm.rateLimit.limit">
+        <div class="row" ng-show="vm.rateLimitState.limit">
             <div class="text-center">
-                <i>(limit: {{ vm.rateLimit.limit }}, remaining: {{ vm.rateLimit.remaining }}, reset: {{ vm.rateLimit.reset | date:'medium' }})</i>
+                <i>(limit: {{ vm.rateLimitState.limit }},
+                    remaining: {{ vm.rateLimitState.remaining }},
+                    reset: {{ vm.rateLimitState.reset | date:'medium' }})</i>
             </div>
         </div>
     </div>

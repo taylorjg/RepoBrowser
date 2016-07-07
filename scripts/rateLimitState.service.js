@@ -3,11 +3,11 @@
     'use strict';
 
     angular.module('appRepoBrowser')
-        .service(RateLimit.name, RateLimit);
+        .service(RateLimitState.name, RateLimitState);
 
-    RateLimit.$inject = [];
+    RateLimitState.$inject = [];
 
-    function RateLimit() {
+    function RateLimitState() {
         return {
             limit: 0,
             remaining: 0,

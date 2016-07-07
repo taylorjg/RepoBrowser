@@ -5,9 +5,9 @@
     angular.module('appRepoBrowser')
         .controller(HomeController.name, HomeController);
 
-    HomeController.$inject = ['GitHubApi', 'RateLimit', 'constants'];
+    HomeController.$inject = ['GitHubApi', 'RateLimitState', 'constants'];
 
-    function HomeController(GitHubApi, RateLimit, constants) {
+    function HomeController(GitHubApi, RateLimitState, constants) {
 
         var vm = this;
         vm.repos = [];
@@ -19,7 +19,7 @@
         vm.currentPage = null;
         vm.selectedRepo = null;
         vm.username = null;
-        vm.rateLimit = RateLimit;
+        vm.rateLimitState = RateLimitState;
         vm.onLookup = onLookup;
         vm.onRepoSelected = onRepoSelected;
         vm.onPageChanged = onPageChanged;
