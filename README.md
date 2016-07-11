@@ -2,6 +2,11 @@
 
 This repo is a little application to browse GitHub repos.
 
+## BUGS
+
+* If the user has less repos than the page size, there is no `Link` header in the response. My code can't cope with that.
+   * can reproduce the problem using a page size of 10 and user `quezlatch` 
+
 ## TODO
 
 * ~~Implement authentication HTTP interceptor~~
