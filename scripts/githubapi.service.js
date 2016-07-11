@@ -43,13 +43,10 @@
             const ks = Object.keys(languagesObject);
             const vs = ks.map(k => languagesObject[k]);
             const total = vs.reduce((acc, v) => acc + v);
-            return ks.map((k, i) => {
-                const percentage = vs[i] * 100 / total;
-                return {
-                    name: k,
-                    percentage: Math.round(percentage)
-                };
-            });
+            return ks.map((k, i) => ({
+                name: k,
+                percentage: Math.round(vs[i] * 100 / total)
+            }));
         }
 
         function getUser(username) {
