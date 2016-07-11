@@ -38,9 +38,7 @@
             vm.selectedRepo = repo;
             if (!vm.selectedRepo.languages) {
                 GitHubApi.getLanguages(vm.selectedRepo)
-                    .then(function (languages) {
-                        vm.selectedRepo.languages = languages;
-                    });
+                    .then(languages => vm.selectedRepo.languages = languages);
             }
         }
 
@@ -50,12 +48,12 @@
 
         function getRepos() {
             GitHubApi.getRepos(vm.username, vm.sortBy, vm.sortDirection, vm.pageSize, vm.currentPage)
-                .then(function (response) {
+                .then(response => {
                     vm.repos = response.data;
                     vm.numPages = response.numPages;
                     onRepoSelected(vm.repos[0]);
                 })
-                .catch(function () {
+                .catch(_ => {
                     vm.repos = [];
                     vm.numPages = 0;
                     vm.selectedRepo = null;
@@ -64,12 +62,8 @@
 
         function getUser(username) {
             GitHubApi.getUser(vm.username)
-                .then(function (response) {
-                    vm.user = response.data;
-                })
-                .catch(function () {
-                    vm.user = null;
-                });
+                .then(user => vm.user = user)
+                .catch(_ => vm.user = null);
         }
     }
 } ());
