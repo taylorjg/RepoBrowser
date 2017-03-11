@@ -17,11 +17,11 @@ class Controller {
     constructor($rootScope) {
         this.show = false;
         this.errorMessage = null;
-        $rootScope.$on(C.GITHUBAPI_ERROR, this.onError.bind(this));
-        $rootScope.$on(C.GITHUBAPI_CLEAR_ERROR, this.onClearError.bind(this));
+        $rootScope.$on(C.GITHUBAPI_SET_ERROR, this.onSetError.bind(this));
+        $rootScope.$on(C.GITHUBAPI_RESET_ERROR, this.onResetError.bind(this));
     }
 
-    onError(_, rejection) {
+    onSetError(_, rejection) {
         this.show = true;
         if (rejection.data && rejection.data.message) {
             this.errorMessage = rejection.data.message;
@@ -31,7 +31,7 @@ class Controller {
         }
     }
 
-    onClearError() {
+    onResetError() {
         this.show = false;
         this.errorMessage = null;
     }

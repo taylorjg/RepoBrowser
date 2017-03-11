@@ -15,12 +15,12 @@ class ErrorInterceptor {
     }
 
     onResponse(response) {
-        this.$rootScope.$broadcast(C.GITHUBAPI_CLEAR_ERROR);
+        this.$rootScope.$broadcast(C.GITHUBAPI_RESET_ERROR);
         return response;
     };
 
     onResponseError(rejection) {
-        this.$rootScope.$broadcast(C.GITHUBAPI_ERROR, rejection);
+        this.$rootScope.$broadcast(C.GITHUBAPI_SET_ERROR, rejection);
         return this.$q.reject(rejection);
     };
 };
