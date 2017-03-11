@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class ErrorPanel {
     constructor() {
@@ -16,8 +17,8 @@ class Controller {
     constructor($rootScope) {
         this.show = false;
         this.errorMessage = null;
-        $rootScope.$on('GITHUBAPI_ERROR', this.onError.bind(this));
-        $rootScope.$on('GITHUBAPI_CLEAR_ERROR', this.onClearError.bind(this));
+        $rootScope.$on(C.GITHUBAPI_ERROR, this.onError.bind(this));
+        $rootScope.$on(C.GITHUBAPI_CLEAR_ERROR, this.onClearError.bind(this));
     }
 
     onError(_, rejection) {

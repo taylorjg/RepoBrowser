@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class AuthenticationInterceptor {
 
@@ -6,17 +7,16 @@ class AuthenticationInterceptor {
         return new AuthenticationInterceptor(...arguments);
     }
 
-    constructor($q, AuthenticationStateService, constants) {
+    constructor($q, AuthenticationStateService) {
         this.$q = $q;
         this.AuthenticationStateService = AuthenticationStateService;
-        this.constants = constants;
         this.request = this.onRequest.bind(this);
         this.response = this.onResponse.bind(this);
         this.responseError = this.onResponseError.bind(this);
     }
 
     isGutHubApiRequest(config) {
-        return config.url.startsWith(this.constants.GITHUBAPI_BASE_URL);
+        return config.url.startsWith(C.GITHUBAPI_BASE_URL);
     }
 
     onRequest(config) {
@@ -58,6 +58,6 @@ class AuthenticationInterceptor {
     };
 };
 
-AuthenticationInterceptor.factory.$inject = ['$q', 'AuthenticationStateService', 'constants'];
+AuthenticationInterceptor.factory.$inject = ['$q', 'AuthenticationStateService'];
 
 app.factory('authenticationInterceptor', AuthenticationInterceptor.factory);

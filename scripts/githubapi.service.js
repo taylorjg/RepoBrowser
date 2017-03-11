@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 const languagesObjectToLanguagesArray = languagesObject => {
     const ks = Object.keys(languagesObject);
@@ -36,15 +37,14 @@ const parseLinkHeader = response => {
 
 class GitHubApiService {
 
-    constructor($http, $q, constants) {
+    constructor($http, $q) {
         this.$http = $http;
         this.$q = $q;
-        this.constants = constants;
     }
 
     getRepos(username, sortBy, sortDirection, pageSize, page) {
 
-        const url = `${this.constants.GITHUBAPI_BASE_URL}/users/${username}/repos`;
+        const url = `${C.GITHUBAPI_BASE_URL}/users/${username}/repos`;
 
         const config = {
             params: {
@@ -63,7 +63,7 @@ class GitHubApiService {
     };
 
     getUser(username) {
-        const url = `${this.constants.GITHUBAPI_BASE_URL}/users/${username}`;
+        const url = `${C.GITHUBAPI_BASE_URL}/users/${username}`;
         return this.$http.get(url)
             .then(response => response.data);
     };
@@ -74,6 +74,6 @@ class GitHubApiService {
     };
 };
 
-GitHubApiService.$inject = ['$http', '$q', 'constants'];
+GitHubApiService.$inject = ['$http', '$q'];
 
 app.service(GitHubApiService.name, GitHubApiService);

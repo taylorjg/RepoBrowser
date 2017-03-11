@@ -1,13 +1,14 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class HomeController {
-    constructor(GitHubApiService, RateLimitStateService, constants) {
+    constructor(GitHubApiService, RateLimitStateService) {
         this.GitHubApiService = GitHubApiService;
         this.repos = [];
         this.user = null;
-        this.sortBy = constants.DEFAULT_SORT_BY;
-        this.sortDirection = constants.DEFAULT_SORT_DIRECTION;
-        this.pageSize = constants.DEFAULT_PAGE_SIZE;
+        this.sortBy = C.DEFAULT_SORT_BY;
+        this.sortDirection = C.DEFAULT_SORT_DIRECTION;
+        this.pageSize = C.DEFAULT_PAGE_SIZE;
         this.numPages = 0;
         this.currentPage = null;
         this.selectedRepo = null;
@@ -58,6 +59,6 @@ class HomeController {
     }
 };
 
-HomeController.$inject = ['GitHubApiService', 'RateLimitStateService', 'constants'];
+HomeController.$inject = ['GitHubApiService', 'RateLimitStateService'];
 
 app.controller(HomeController.name, HomeController);

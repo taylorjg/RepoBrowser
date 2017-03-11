@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class SpinnerInterceptor {
 
@@ -16,22 +17,22 @@ class SpinnerInterceptor {
     }
 
     onRequest(config) {
-        this.$rootScope.$broadcast('GITHUBAPI_BEGIN');
+        this.$rootScope.$broadcast(C.GITHUBAPI_BEGIN);
         return config;
     };
 
     onRequestError(rejection) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
+        this.$rootScope.$broadcast(C.GITHUBAPI_END);
         return this.$q.reject(rejection);
     };
 
     onResponse(response) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
+        this.$rootScope.$broadcast(C.GITHUBAPI_END);
         return response;
     };
 
     onResponseError(rejection) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
+        this.$rootScope.$broadcast(C.GITHUBAPI_END);
         return this.$q.reject(rejection);
     };
 };

@@ -4,7 +4,6 @@ import './error.interceptor';
 import './rateLimit.interceptor';
 import './spinner.interceptor';
 import './app.config';
-import './app.constants';
 import './home.controller';
 import './authenticationState.service';
 import './githubapi.service';

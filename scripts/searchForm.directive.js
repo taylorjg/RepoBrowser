@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class SearchForm {
     constructor() {
@@ -15,13 +16,12 @@ class SearchForm {
 };
 
 class Controller {
-    constructor(AuthenticationStateService, constants) {
+    constructor(AuthenticationStateService) {
         this.AuthenticationStateService = AuthenticationStateService;
-        this.constants = constants;
         this.username = 'taylorjg';
-        this.sortBy = constants.DEFAULT_SORT_BY;
-        this.sortDirection = constants.DEFAULT_SORT_DIRECTION;
-        this.pageSize = String(constants.DEFAULT_PAGE_SIZE);
+        this.sortBy = C.DEFAULT_SORT_BY;
+        this.sortDirection = C.DEFAULT_SORT_DIRECTION;
+        this.pageSize = String(C.DEFAULT_PAGE_SIZE);
     }
 
     onFormSubmit() {
@@ -42,6 +42,6 @@ class Controller {
     }
 };
 
-Controller.$inject = ['AuthenticationStateService', 'constants'];
+Controller.$inject = ['AuthenticationStateService'];
 
 app.directive('searchForm', () => new SearchForm);

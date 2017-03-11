@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class ErrorInterceptor {
 
@@ -14,12 +15,12 @@ class ErrorInterceptor {
     }
 
     onResponse(response) {
-        this.$rootScope.$broadcast('GITHUBAPI_CLEAR_ERROR');
+        this.$rootScope.$broadcast(C.GITHUBAPI_CLEAR_ERROR);
         return response;
     };
 
     onResponseError(rejection) {
-        this.$rootScope.$broadcast('GITHUBAPI_ERROR', rejection);
+        this.$rootScope.$broadcast(C.GITHUBAPI_ERROR, rejection);
         return this.$q.reject(rejection);
     };
 };

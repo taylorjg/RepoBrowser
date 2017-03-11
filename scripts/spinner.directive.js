@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 class Spinner {
     constructor() {
@@ -15,8 +16,8 @@ class Spinner {
 class Controller {
     constructor($rootScope) {
         this.show = false;
-        $rootScope.$on('GITHUBAPI_BEGIN', this.showSpinner.bind(this));
-        $rootScope.$on('GITHUBAPI_END', this.hideSpinner.bind(this));
+        $rootScope.$on(C.GITHUBAPI_BEGIN, this.showSpinner.bind(this));
+        $rootScope.$on(C.GITHUBAPI_END, this.hideSpinner.bind(this));
     }
 
     showSpinner() {
