@@ -43,8 +43,8 @@ This repo is a little application to browse GitHub repos.
 * Add unit tests (Karma/Jasmine)
 * Add end-to-end tests (Protractor)
 * Support deep linking
-* Convert JavaScript code to ES2015
-    * Webpack/gulp etc.
+* ~~Convert JavaScript code to es2015~~
+* ~~Use webpack to bundle the JavaScript files~~
 
 ## Screenshots
 
