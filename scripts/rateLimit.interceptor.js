@@ -1,5 +1,9 @@
 import app from './app.module';
 
+const XRateLimitLimit = 'X-RateLimit-Limit';
+const XRateLimitRemaining = 'X-RateLimit-Remaining';
+const XRateLimitReset = 'X-RateLimit-Reset';
+
 class RateLimitInterceptor {
 
     static factory() {
@@ -14,19 +18,19 @@ class RateLimitInterceptor {
     }
 
     onResponse(response) {
-        if (response.headers('X-RateLimit-Limit') && response.headers('X-RateLimit-Remaining')) {
-            this.RateLimitStateService.limit = Number(response.headers('X-RateLimit-Limit'));
-            this.RateLimitStateService.remaining = Number(response.headers('X-RateLimit-Remaining'));
-            this.RateLimitStateService.reset = new Date(Number(response.headers('X-RateLimit-Reset')) * 1000);
+        if (response.headers(XRateLimitLimit) && response.headers(XRateLimitRemaining)) {
+            this.RateLimitStateService.limit = Number(response.headers(XRateLimitLimit));
+            this.RateLimitStateService.remaining = Number(response.headers(XRateLimitRemaining));
+            this.RateLimitStateService.reset = new Date(Number(response.headers(XRateLimitReset)) * 1000);
         }
         return response;
     };
 
     onResponseError(rejection) {
-        if (rejection.headers('X-RateLimit-Limit') && rejection.headers('X-RateLimit-Remaining')) {
-            this.RateLimitStateService.limit = Number(rejection.headers('X-RateLimit-Limit'));
-            this.RateLimitStateService.remaining = Number(rejection.headers('X-RateLimit-Remaining'));
-            this.RateLimitStateService.reset = new Date(Number(rejection.headers('X-RateLimit-Reset')) * 1000);
+        if (rejection.headers(XRateLimitLimit) && rejection.headers(XRateLimitRemaining)) {
+            this.RateLimitStateService.limit = Number(rejection.headers(XRateLimitLimit));
+            this.RateLimitStateService.remaining = Number(rejection.headers(XRateLimitRemaining));
+            this.RateLimitStateService.reset = new Date(Number(rejection.headers(XRateLimitReset)) * 1000);
         }
         return this.$q.reject(rejection);
     };
