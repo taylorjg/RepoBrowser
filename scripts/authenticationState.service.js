@@ -1,34 +1,36 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+class AuthenticationStateService {
 
-    angular.module('appRepoBrowser')
-        .service(AuthenticationState.name, AuthenticationState);
-
-    AuthenticationState.$inject = [];
-
-    function AuthenticationState() {
-
-        var tokenIsGood = false;
-        var tokenIsBad = false;
-
-        return {
-            getTokenIsGood: function () {
-                return tokenIsGood; },
-            getTokenIsBad: function () {
-                return tokenIsBad; },
-            setTokenIsGood: function () {
-                tokenIsGood = true;
-                tokenIsBad = false;
-            },
-            setTokenIsBad: function () {
-                tokenIsGood = false;
-                tokenIsBad = true;
-            },
-            reset: function() {
-                tokenIsGood = false;
-                tokenIsBad = false;
-            }
-        };
+    constructor() {
+        this.tokenIsGood = false;
+        this.tokenIsBad = false;
     }
-} ());
+
+    getTokenIsGood() {
+        return this.tokenIsGood;
+    }
+
+    getTokenIsBad() {
+        return this.tokenIsBad;
+    }
+
+    setTokenIsGood() {
+        this.tokenIsGood = true;
+        this.tokenIsBad = false;
+    }
+
+    setTokenIsBad() {
+        this.tokenIsGood = false;
+        this.tokenIsBad = true;
+    }
+
+    reset() {
+        this.tokenIsGood = false;
+        this.tokenIsBad = false;
+    }
+}
+
+AuthenticationStateService.$inject = [];
+
+app.service(AuthenticationStateService.name, AuthenticationStateService);

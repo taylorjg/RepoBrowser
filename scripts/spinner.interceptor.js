@@ -1,30 +1,34 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+class SpinnerInterceptor {
 
-    angular.module('appRepoBrowser')
-        .factory(spinnerInterceptor.name, spinnerInterceptor);
-
-    spinnerInterceptor.$inject = ['$rootScope', '$q'];
-
-    function spinnerInterceptor($rootScope, $q) {
-        return {
-            'request': function(config) {
-                $rootScope.$broadcast('GITHUBAPI_BEGIN');
-                return config;
-            },
-            'requestError': function(rejection) {
-                $rootScope.$broadcast('GITHUBAPI_END');
-                return $q.reject(rejection);
-            },
-            'response': function(response) {
-                $rootScope.$broadcast('GITHUBAPI_END');
-                return response;
-            },
-            'responseError': function(rejection) {
-                $rootScope.$broadcast('GITHUBAPI_END');
-                return $q.reject(rejection);
-            }
-        };
+    constructor($rootScope, $q) {
+        console.log('SpinnerInterceptor constructor');
+        this.$rootScope = $rootScope;
+        this.$q = $q;
     }
-} ());
+
+    request(config) {
+        this.$rootScope.$broadcast('GITHUBAPI_BEGIN');
+        return config;
+    };
+
+    requestError(rejection) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return this.$q.reject(rejection);
+    };
+
+    response(response) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return response;
+    };
+
+    responseError(rejection) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return this.$q.reject(rejection);
+    };
+};
+
+SpinnerInterceptor.$inject = ['$rootScope', '$q'];
+
+app.factory('spinnerInterceptor', SpinnerInterceptor);

@@ -1,45 +1,48 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+class SearchForm {
+    constructor() {
+        this.restrict = 'E';
+        this.templateUrl = 'templates/searchForm.directive.html';
+        this.replace = true;
+        this.scope = {
+            onSubmit: '&'
+        };
+        this.controller = Controller;
+        this.controllerAs = 'vm';
+        this.bindToController = true;
+    }
+};
 
-    angular.module('appRepoBrowser')
-        .directive(searchForm.name, searchForm);
+class Controller {
+    constructor(AuthenticationStateService, constants) {
+        this.AuthenticationStateService = AuthenticationStateService;
+        this.constants = constants;
+        this.AuthenticationStateService = this.AuthenticationStateService;
+        this.username = 'taylorjg';
+        this.sortBy = constants.DEFAULT_SORT_BY;
+        this.sortDirection = constants.DEFAULT_SORT_DIRECTION;
+        this.pageSize = String(constants.DEFAULT_PAGE_SIZE);
+    }
 
-    searchForm.$inject = ['AuthenticationState', 'constants'];
+    onFormSubmit() {
+        this.onSubmit({
+            username: this.username,
+            sortBy: this.sortBy,
+            sortDirection: this.sortDirection,
+            pageSize: this.pageSize
+        });
+    }
 
-    function searchForm(AuthenticationState, constants) {
+    feedbackClasses() {
         return {
-            restrict: 'E',
-            templateUrl: 'templates/searchForm.directive.html',
-            replace: true,
-            scope: {
-                onSubmit: '&'
-            },
-            controller: function () {
-                var vm = this;
-                vm.authenticationState = AuthenticationState;
-                vm.username = 'taylorjg';
-                vm.sortBy = constants.DEFAULT_SORT_BY;
-                vm.sortDirection = constants.DEFAULT_SORT_DIRECTION;
-                vm.pageSize = constants.DEFAULT_PAGE_SIZE;
-                vm.onFormSubmit = function () {
-                    vm.onSubmit({
-                        username: vm.username,
-                        sortBy: vm.sortBy,
-                        sortDirection: vm.sortDirection,
-                        pageSize: vm.pageSize
-                    });
-                }
-                vm.feedbackClasses = function () {
-                    return {
-                        'has-feedback': AuthenticationState.getTokenIsGood() || AuthenticationState.getTokenIsBad(),
-                        'has-success': AuthenticationState.getTokenIsGood(),
-                        'has-error': AuthenticationState.getTokenIsBad(),
-                    };
-                }
-            },
-            controllerAs: 'vm',
-            bindToController: true
+            'has-feedback': this.AuthenticationStateService.getTokenIsGood() || this.AuthenticationStateService.getTokenIsBad(),
+            'has-success': this.AuthenticationStateService.getTokenIsGood(),
+            'has-error': this.AuthenticationStateService.getTokenIsBad(),
         };
     }
-} ());
+};
+
+Controller.$inject = ['AuthenticationStateService', 'constants'];
+
+app.directive('searchForm', () => new SearchForm);

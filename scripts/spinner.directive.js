@@ -1,33 +1,30 @@
-(function() {
+import app from './app.module';
 
-    'use strict';
-
-    angular.module('appRepoBrowser')
-        .directive(spinner.name, spinner);
-
-    spinner.$inject = ['$rootScope'];
-
-    function spinner($rootScope) {
-        return {
-            restrict: 'E',
-            templateUrl: 'templates/spinner.directive.html',
-            replace: true,
-            scope: {},
-            controller: function() {
-
-                var vm = this;
-                vm.show = false;
-
-                $rootScope.$on('GITHUBAPI_BEGIN', function() {
-                    vm.show = true;
-                });
-
-                $rootScope.$on('GITHUBAPI_END', function() {
-                    vm.show = false;
-                });
-            },
-            controllerAs: 'vm',
-            bindToController: true
-        };
+class Spinner {
+    constructor() {
+        this.restrict = 'E';
+        this.templateUrl = 'templates/spinner.directive.html';
+        this.replace = true;
+        this.scope = {};
+        this.controller = Controller;
+        this.controllerAs = 'vm';
+        this.bindToController = true;
     }
-}());
+};
+
+class Controller {
+    constructor($rootScope) {
+        this.show = false;
+        $rootScope.$on('GITHUBAPI_BEGIN', function () {
+            this.show = true;
+        });
+
+        $rootScope.$on('GITHUBAPI_END', function () {
+            this.show = false;
+        });
+    }
+};
+
+Controller.$inject = ['$rootScope'];
+
+app.directive('spinner', () => new Spinner);

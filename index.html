@@ -1,33 +1,14 @@
 <!doctype html>
-<html ng-app="appRepoBrowser">
+<html ng-app="appRepoBrowser" ng-strict-di>
 
 <head>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-    <script src="node_modules/bootcards/dist/js/bootcards.js"></script>
-
-    <script src="scripts/app.module.js"></script>
-    <script src="scripts/app.constants.js"></script>
-    <script src="scripts/app.config.js"></script>
-    <script src="scripts/spinner.interceptor.js"></script>
-    <script src="scripts/error.interceptor.js"></script>
-    <script src="scripts/rateLimit.interceptor.js"></script>
-    <script src="scripts/authentication.interceptor.js"></script>
-    <script src="scripts/home.controller.js"></script>
-    <script src="scripts/githubapi.service.js"></script>
-    <script src="scripts/rateLimitState.service.js"></script>
-    <script src="scripts/authenticationState.service.js"></script>
-    <script src="scripts/searchForm.directive.js"></script>
-    <script src="scripts/repoSummary.directive.js"></script>
-    <script src="scripts/repoDetails.directive.js"></script>
-    <script src="scripts/userDetails.directive.js"></script>
-    <script src="scripts/errorPanel.directive.js"></script>
-    <script src="scripts/spinner.directive.js"></script>
-
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="node_modules/bootcards/dist/css/bootcards-desktop.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <script src="bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.2/js/bootcards.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.2/css/bootcards-desktop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 

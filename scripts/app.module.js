@@ -1,4 +1,3 @@
-(function() {
-    'use strict';
-    angular.module('appRepoBrowser', ['ui.bootstrap']);
-}());
+import angular from 'angular';
+
+export default angular.module('appRepoBrowser', ['ui.bootstrap']);

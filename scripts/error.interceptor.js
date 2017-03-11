@@ -1,22 +1,23 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+class ErrorInterceptor {
 
-    angular.module('appRepoBrowser')
-        .factory(errorInterceptor.name, errorInterceptor);
-
-    errorInterceptor.$inject = ['$q', '$rootScope'];
-
-    function errorInterceptor($q, $rootScope) {
-        return {
-            'response': function (response) {
-                $rootScope.$broadcast("GITHUBAPI_CLEAR_ERROR");
-                return response;
-            },
-            'responseError': function (rejection) {
-                $rootScope.$broadcast("GITHUBAPI_ERROR", rejection);
-                return $q.reject(rejection);
-            }
-        };
+    constructor($q, $rootScope) {
+        this.$q = $q;
+        this.$rootScope = $rootScope;
     }
-} ());
+
+    response(response) {
+        this.$rootScope.$broadcast('GITHUBAPI_CLEAR_ERROR');
+        return response;
+    };
+
+    responseError(rejection) {
+        this.$rootScope.$broadcast('GITHUBAPI_ERROR', rejection);
+        return this.$q.reject(rejection);
+    }
+};
+
+ErrorInterceptor.$inject = ['$q', '$rootScope'];
+
+app.factory('errorInterceptor', ErrorInterceptor);

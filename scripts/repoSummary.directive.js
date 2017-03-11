@@ -1,27 +1,19 @@
-(function() {
+import app from './app.module';
 
-    'use strict';
-
-    angular.module('appRepoBrowser')
-        .directive(repoSummary.name, repoSummary);
-
-    repoSummary.$inject = [];
-
-    function repoSummary() {
-        return {
-            restrict: 'E',
-            templateUrl: 'templates/repoSummary.directive.html',
-            replace: true,
-            scope: {
-                repo: '=',
-                selectedRepo: '=',
-                onRepoSelected: '&'
-            },
-            controller: function() {
-                var vm = this;
-            },
-            controllerAs: 'vm',
-            bindToController: true
+class RepoSummary {
+    constructor() {
+        this.restrict = 'E';
+        this.templateUrl = 'templates/repoSummary.directive.html';
+        this.replace = true;
+        this.scope = {
+            repo: '=',
+            selectedRepo: '=',
+            onRepoSelected: '&'
         };
-    }
-}());
+        this.controller = function() {};
+        this.controllerAs = 'vm';
+        this.bindToController = true;
+    };
+};
+
+app.directive('repoSummary', () => new RepoSummary);

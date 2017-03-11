@@ -1,56 +1,56 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+class AuthenticationInterceptor {
 
-    angular.module('appRepoBrowser')
-        .factory(authenticationInterceptor.name, authenticationInterceptor);
-
-    authenticationInterceptor.$inject = ['$interpolate', '$q', 'AuthenticationState', 'constants'];
-
-    function authenticationInterceptor($interpolate, $q, AuthenticationState, constants) {
-
-        function isGutHubApiRequest(config) {
-            return config.url.indexOf(constants.GITHUBAPI_BASE_URL) === 0;
-        }
-
-        return {
-            'request': function (config) {
-                if (isGutHubApiRequest(config)) {
-                    if (AuthenticationState.token) {
-                        var token = AuthenticationState.token;
-                        var authorization = $interpolate('token {{token}}')({ token: token });
-                        config.headers['Authorization'] = authorization;
-                    }
-                    config.params = config.params || {};
-                    config.params['_'] = new Date().getTime();
-                }
-                return config;
-            },
-            'response': function (response) {
-                if (isGutHubApiRequest(response.config)) {
-                    if (AuthenticationState.token) {
-                        AuthenticationState.setTokenIsGood();
-                    }
-                    else {
-                        AuthenticationState.reset();
-                    }
-                }
-                return response;
-            },
-            'responseError': function (rejection) {
-                if (isGutHubApiRequest(rejection.config)) {
-                    if (AuthenticationState.token) {
-                        if (rejection.status === 401)
-                            AuthenticationState.setTokenIsBad();
-                        else
-                            AuthenticationState.setTokenIsGood();
-                    }
-                    else {
-                        AuthenticationState.reset();
-                    }
-                }
-                return $q.reject(rejection);
-            }
-        };
+    constructor($q, AuthenticationStateService, constants) {
+        this.$q = $q;
+        this.AuthenticationStateService = AuthenticationStateService;
+        this.constants = constants;
     }
-} ());
+
+    isGutHubApiRequest(config) {
+        return config.url.startsWith(constants.GITHUBAPI_BASE_URL);
+    }
+
+    request(config) {
+        if (isGutHubApiRequest(config)) {
+            if (this.AuthenticationStateService.token) {
+                config.headers['Authorization'] = `token ${this.AuthenticationStateService.token}`;
+            }
+            config.params = config.params || {};
+            config.params['_'] = new Date().getTime();
+        }
+        return config;
+    };
+
+    response(response) {
+        if (isGutHubApiRequest(response.config)) {
+            if (this.AuthenticationStateService.token) {
+                this.AuthenticationStateService.setTokenIsGood();
+            }
+            else {
+                this.AuthenticationStateService.reset();
+            }
+        }
+        return response;
+    };
+
+    responseError(rejection) {
+        if (isGutHubApiRequest(rejection.config)) {
+            if (this.AuthenticationStateService.token) {
+                if (rejection.status === 401)
+                    this.AuthenticationStateService.setTokenIsBad();
+                else
+                    this.AuthenticationStateService.setTokenIsGood();
+            }
+            else {
+                this.AuthenticationStateService.reset();
+            }
+        }
+        return this.$q.reject(rejection);
+    };
+};
+
+AuthenticationInterceptor.$inject = ['$q', 'AuthenticationStateService', 'constants'];
+
+app.factory('authenticationInterceptor', AuthenticationInterceptor);

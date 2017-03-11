@@ -1,16 +1,13 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
+const config = $httpProvider => {
+    console.log('[config]');
+    // $httpProvider.interceptors.push('authenticationInterceptor');
+    // $httpProvider.interceptors.push('errorInterceptor');
+    // $httpProvider.interceptors.push('rateLimitInterceptor');
+    // $httpProvider.interceptors.push('spinnerInterceptor');
+};
 
-    angular.module('appRepoBrowser')
-        .config(config);
+config.$inject = ['$httpProvider'];
 
-    config.$inject = ['$httpProvider'];
-
-    function config($httpProvider) {
-        $httpProvider.interceptors.push('authenticationInterceptor');
-        $httpProvider.interceptors.push('errorInterceptor');
-        $httpProvider.interceptors.push('spinnerInterceptor');
-        $httpProvider.interceptors.push('rateLimitInterceptor');
-    }
-} ());
+app.config(config);

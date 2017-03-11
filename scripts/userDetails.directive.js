@@ -1,25 +1,17 @@
-(function() {
+import app from './app.module';
 
-    'use strict';
-
-    angular.module('appRepoBrowser')
-        .directive(userDetails.name, userDetails);
-
-    userDetails.$inject = [];
-
-    function userDetails() {
-        return {
-            restrict: 'E',
-            templateUrl: 'templates/userDetails.directive.html',
-            replace: true,
-            scope: {
-                user: '='
-            },
-            controller: function() {
-                var vm = this;
-            },
-            controllerAs: 'vm',
-            bindToController: true
+class UserDetails {
+    constructor() {
+        this.restrict = 'E';
+        this.templateUrl = 'templates/userDetails.directive.html';
+        this.replace = true;
+        this.scope = {
+            user: '='
         };
-    }
-}());
+        this.controller = function() {};
+        this.controllerAs = 'vm';
+        this.bindToController = true;
+    };
+}
+
+app.directive('userDetails', () => new UserDetails);

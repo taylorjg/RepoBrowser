@@ -1,17 +1,13 @@
-(function () {
+import app from './app.module';
 
-    'use strict';
-
-    angular.module('appRepoBrowser')
-        .service(RateLimitState.name, RateLimitState);
-
-    RateLimitState.$inject = [];
-
-    function RateLimitState() {
-        return {
-            limit: 0,
-            remaining: 0,
-            reset: new Date(0)
-        };
+class RateLimitStateService {
+    constructor() {
+        this.limit = 0;
+        this.remaining = 0;
+        this.reset = new Date(0);
     }
-} ());
+}
+
+RateLimitStateService.$inject = [];
+
+app.service(RateLimitStateService.name, RateLimitStateService);
