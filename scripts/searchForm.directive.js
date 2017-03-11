@@ -18,7 +18,6 @@ class Controller {
     constructor(AuthenticationStateService, constants) {
         this.AuthenticationStateService = AuthenticationStateService;
         this.constants = constants;
-        this.AuthenticationStateService = this.AuthenticationStateService;
         this.username = 'taylorjg';
         this.sortBy = constants.DEFAULT_SORT_BY;
         this.sortDirection = constants.DEFAULT_SORT_DIRECTION;

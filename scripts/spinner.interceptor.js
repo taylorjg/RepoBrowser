@@ -1,30 +1,41 @@
 import app from './app.module';
 
 class SpinnerInterceptor {
-    constructor($rootScope, $q) {
 
-        this.request = config => {
-            $rootScope.$broadcast('GITHUBAPI_BEGIN');
-            return config;
-        };
-
-        this.requestError = rejection => {
-            $rootScope.$broadcast('GITHUBAPI_END');
-            return $q.reject(rejection);
-        };
-
-        this.response = response => {
-            $rootScope.$broadcast('GITHUBAPI_END');
-            return response;
-        };
-
-        this.responseError = rejection => {
-            $rootScope.$broadcast('GITHUBAPI_END');
-            return $q.reject(rejection);
-        };
+    static factory() {
+        return new SpinnerInterceptor(...arguments);
     }
+    
+    constructor($rootScope, $q) {
+        this.$rootScope = $rootScope;
+        this.$q = $q;
+        this.request = this.onRequest.bind(this);
+        this.requestError = this.onRequestError.bind(this);
+        this.response = this.onResponse.bind(this);
+        this.responseError = this.onResponseError.bind(this);
+    }
+
+    onRequest(config) {
+        this.$rootScope.$broadcast('GITHUBAPI_BEGIN');
+        return config;
+    };
+
+    onRequestError(rejection) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return this.$q.reject(rejection);
+    };
+
+    onResponse(response) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return response;
+    };
+
+    onResponseError(rejection) {
+        this.$rootScope.$broadcast('GITHUBAPI_END');
+        return this.$q.reject(rejection);
+    };
 };
 
-function factory() { return new SpinnerInterceptor(...arguments); };
-factory.$inject = ['$rootScope', '$q'];
-app.factory('spinnerInterceptor', factory);
+SpinnerInterceptor.factory.$inject = ['$rootScope', '$q'];
+
+app.factory('spinnerInterceptor', SpinnerInterceptor.factory);

@@ -1,14 +1,17 @@
 <form name="form" novalidate>
+
     <div class="form-group" ng-class="vm.feedbackClasses()">
         <label class="control-label" for="token">GitHub OAuth token:</label>
-        <input class="form-control" id="token" type="text" ng-model="vm.authenticationState.token" required>
-        <span ng-show="vm.authenticationState.getTokenIsGood()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-        <span ng-show="vm.authenticationState.getTokenIsBad()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <input class="form-control" id="token" type="text" ng-model="vm.AuthenticationStateService.token" required>
+        <span ng-show="vm.AuthenticationStateService.getTokenIsGood()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="vm.AuthenticationStateService.getTokenIsBad()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     </div>
+
     <div class="form-group">
         <label class="control-label" for="username">GitHub Username:</label>
         <input class="form-control" id="username" type="text" ng-model="vm.username" required>
     </div>
+
     <div class="form-group">
         <label class="control-label">Sort By:</label>
         &nbsp;
@@ -32,6 +35,7 @@
             Pushed
         </label>
     </div>
+
     <div class="form-group">
         <label class="control-label">Sort Direction:</label>
         &nbsp;
@@ -45,6 +49,7 @@
             Descending
         </label>
     </div>
+
     <div class="form-group">
         <label class="control-label">Page Size:</label>
         &nbsp;
@@ -63,6 +68,7 @@
             25
         </label>
     </div>
+
     <div>
         <button class="btn btn-sm btn-primary" type="submit" ng-click="vm.onFormSubmit()">Get Repos</button>
         <spinner></spinner>

@@ -1,7 +1,7 @@
 import './app.module';
-// import './authentication.interceptor';
-// import './error.interceptor';
-// import './rateLimit.interceptor';
+import './authentication.interceptor';
+import './error.interceptor';
+import './rateLimit.interceptor';
 import './spinner.interceptor';
 import './app.config';
 import './app.constants';

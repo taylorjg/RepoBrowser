@@ -2,18 +2,25 @@ import app from './app.module';
 
 class AuthenticationInterceptor {
 
+    static factory() {
+        return new AuthenticationInterceptor(...arguments);
+    }
+
     constructor($q, AuthenticationStateService, constants) {
         this.$q = $q;
         this.AuthenticationStateService = AuthenticationStateService;
         this.constants = constants;
+        this.request = this.onRequest.bind(this);
+        this.response = this.onResponse.bind(this);
+        this.responseError = this.onResponseError.bind(this);
     }
 
     isGutHubApiRequest(config) {
-        return config.url.startsWith(constants.GITHUBAPI_BASE_URL);
+        return config.url.startsWith(this.constants.GITHUBAPI_BASE_URL);
     }
 
-    request(config) {
-        if (isGutHubApiRequest(config)) {
+    onRequest(config) {
+        if (this.isGutHubApiRequest(config)) {
             if (this.AuthenticationStateService.token) {
                 config.headers['Authorization'] = `token ${this.AuthenticationStateService.token}`;
             }
@@ -23,8 +30,8 @@ class AuthenticationInterceptor {
         return config;
     };
 
-    response(response) {
-        if (isGutHubApiRequest(response.config)) {
+    onResponse(response) {
+        if (this.isGutHubApiRequest(response.config)) {
             if (this.AuthenticationStateService.token) {
                 this.AuthenticationStateService.setTokenIsGood();
             }
@@ -35,8 +42,8 @@ class AuthenticationInterceptor {
         return response;
     };
 
-    responseError(rejection) {
-        if (isGutHubApiRequest(rejection.config)) {
+    onResponseError(rejection) {
+        if (this.isGutHubApiRequest(rejection.config)) {
             if (this.AuthenticationStateService.token) {
                 if (rejection.status === 401)
                     this.AuthenticationStateService.setTokenIsBad();
@@ -51,6 +58,6 @@ class AuthenticationInterceptor {
     };
 };
 
-AuthenticationInterceptor.$inject = ['$q', 'AuthenticationStateService', 'constants'];
+AuthenticationInterceptor.factory.$inject = ['$q', 'AuthenticationStateService', 'constants'];
 
-app.factory('authenticationInterceptor', AuthenticationInterceptor);
+app.factory('authenticationInterceptor', AuthenticationInterceptor.factory);

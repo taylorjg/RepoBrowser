@@ -5,6 +5,7 @@ class AuthenticationStateService {
     constructor() {
         this.tokenIsGood = false;
         this.tokenIsBad = false;
+        this.token = null;
     }
 
     getTokenIsGood() {
@@ -28,6 +29,7 @@ class AuthenticationStateService {
     reset() {
         this.tokenIsGood = false;
         this.tokenIsBad = false;
+        this.token = null;
     }
 }
 

@@ -16,21 +16,23 @@ class Controller {
     constructor($rootScope) {
         this.show = false;
         this.errorMessage = null;
+        $rootScope.$on('GITHUBAPI_ERROR', this.onError.bind(this));
+        $rootScope.$on('GITHUBAPI_CLEAR_ERROR', this.onClearError.bind(this));
+    }
 
-        $rootScope.$on('GITHUBAPI_ERROR', function (_, rejection) {
-            this.show = true;
-            if (rejection.data && rejection.data.message) {
-                this.errorMessage = rejection.data.message;
-            }
-            else {
-                this.errorMessage = `${rejection.status}: ${rejection.statusText}`
-            }
-        });
+    onError(_, rejection) {
+        this.show = true;
+        if (rejection.data && rejection.data.message) {
+            this.errorMessage = rejection.data.message;
+        }
+        else {
+            this.errorMessage = `${rejection.status}: ${rejection.statusText}`
+        }
+    }
 
-        $rootScope.$on('GITHUBAPI_CLEAR_ERROR', function () {
-            this.show = false;
-            this.errorMessage = null;
-        });
+    onClearError() {
+        this.show = false;
+        this.errorMessage = null;
     }
 
     onClose() {
