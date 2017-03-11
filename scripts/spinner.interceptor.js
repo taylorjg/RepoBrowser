@@ -1,34 +1,30 @@
 import app from './app.module';
 
 class SpinnerInterceptor {
-
     constructor($rootScope, $q) {
-        console.log('SpinnerInterceptor constructor');
-        this.$rootScope = $rootScope;
-        this.$q = $q;
+
+        this.request = config => {
+            $rootScope.$broadcast('GITHUBAPI_BEGIN');
+            return config;
+        };
+
+        this.requestError = rejection => {
+            $rootScope.$broadcast('GITHUBAPI_END');
+            return $q.reject(rejection);
+        };
+
+        this.response = response => {
+            $rootScope.$broadcast('GITHUBAPI_END');
+            return response;
+        };
+
+        this.responseError = rejection => {
+            $rootScope.$broadcast('GITHUBAPI_END');
+            return $q.reject(rejection);
+        };
     }
-
-    request(config) {
-        this.$rootScope.$broadcast('GITHUBAPI_BEGIN');
-        return config;
-    };
-
-    requestError(rejection) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
-        return this.$q.reject(rejection);
-    };
-
-    response(response) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
-        return response;
-    };
-
-    responseError(rejection) {
-        this.$rootScope.$broadcast('GITHUBAPI_END');
-        return this.$q.reject(rejection);
-    };
 };
 
-SpinnerInterceptor.$inject = ['$rootScope', '$q'];
-
-app.factory('spinnerInterceptor', SpinnerInterceptor);
+function factory() { return new SpinnerInterceptor(...arguments); };
+factory.$inject = ['$rootScope', '$q'];
+app.factory('spinnerInterceptor', factory);

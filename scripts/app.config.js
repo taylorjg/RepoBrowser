@@ -1,11 +1,10 @@
 import app from './app.module';
 
 const config = $httpProvider => {
-    console.log('[config]');
     // $httpProvider.interceptors.push('authenticationInterceptor');
     // $httpProvider.interceptors.push('errorInterceptor');
     // $httpProvider.interceptors.push('rateLimitInterceptor');
-    // $httpProvider.interceptors.push('spinnerInterceptor');
+    $httpProvider.interceptors.push('spinnerInterceptor');
 };
 
 config.$inject = ['$httpProvider'];

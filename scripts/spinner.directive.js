@@ -15,13 +15,16 @@ class Spinner {
 class Controller {
     constructor($rootScope) {
         this.show = false;
-        $rootScope.$on('GITHUBAPI_BEGIN', function () {
-            this.show = true;
-        });
+        $rootScope.$on('GITHUBAPI_BEGIN', this.showSpinner.bind(this));
+        $rootScope.$on('GITHUBAPI_END', this.hideSpinner.bind(this));
+    }
 
-        $rootScope.$on('GITHUBAPI_END', function () {
-            this.show = false;
-        });
+    showSpinner() {
+        this.show = true;
+    }
+
+    hideSpinner() {
+        this.show = false;
     }
 };
 
