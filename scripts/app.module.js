@@ -1,3 +1,3 @@
-import angular from 'angular';
+import {module} from 'angular';
 
-export default angular.module('appRepoBrowser', ['ui.bootstrap']);
+export default module('appRepoBrowser', ['ui.bootstrap']);

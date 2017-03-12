@@ -1,18 +1,6 @@
 import app from './app.module';
 import * as C from './app.constants';
 
-class Spinner {
-    constructor() {
-        this.restrict = 'E';
-        this.templateUrl = 'templates/spinner.directive.html';
-        this.replace = true;
-        this.scope = {};
-        this.controller = Controller;
-        this.controllerAs = 'vm';
-        this.bindToController = true;
-    }
-};
-
 class Controller {
     constructor($rootScope) {
         this.show = false;
@@ -31,4 +19,11 @@ class Controller {
 
 Controller.$inject = ['$rootScope'];
 
-app.directive('spinner', () => new Spinner);
+const spinner = {
+    selector: 'spinner',
+    templateUrl: 'templates/spinner.component.html',
+    controller: Controller,
+    controllerAs: 'vm',
+};
+
+app.component(spinner.selector, spinner);

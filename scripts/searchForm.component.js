@@ -1,20 +1,6 @@
 import app from './app.module';
 import * as C from './app.constants';
 
-class SearchForm {
-    constructor() {
-        this.restrict = 'E';
-        this.templateUrl = 'templates/searchForm.directive.html';
-        this.replace = true;
-        this.scope = {
-            onSubmit: '&'
-        };
-        this.controller = Controller;
-        this.controllerAs = 'vm';
-        this.bindToController = true;
-    }
-};
-
 class Controller {
     constructor(AuthenticationStateService) {
         this.AuthenticationStateService = AuthenticationStateService;
@@ -44,4 +30,14 @@ class Controller {
 
 Controller.$inject = ['AuthenticationStateService'];
 
-app.directive('searchForm', () => new SearchForm);
+const searchForm = {
+    selector: 'searchForm',
+    templateUrl: 'templates/searchForm.component.html',
+    bindings: {
+        onSubmit: '&'
+    },
+    controller: Controller,
+    controllerAs: 'vm',
+};
+
+app.component(searchForm.selector, searchForm);

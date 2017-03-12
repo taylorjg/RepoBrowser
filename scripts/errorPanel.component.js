@@ -1,18 +1,6 @@
 import app from './app.module';
 import * as C from './app.constants';
 
-class ErrorPanel {
-    constructor() {
-        this.restrict = 'E';
-        this.templateUrl = 'templates/errorPanel.directive.html';
-        this.replace = false;
-        this.scope = {};
-        this.controller = Controller;
-        this.controllerAs = 'vm';
-        this.bindToController = true;
-    }
-};
-
 class Controller {
     constructor($rootScope) {
         this.show = false;
@@ -43,4 +31,11 @@ class Controller {
 
 Controller.$inject = ['$rootScope'];
 
-app.directive('errorPanel', () => new ErrorPanel);
+const errorPanel = {
+    selector: 'errorPanel',
+    templateUrl: 'templates/errorPanel.component.html',
+    controller: Controller,
+    controllerAs: 'vm',
+};
+
+app.component(errorPanel.selector, errorPanel);
