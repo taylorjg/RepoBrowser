@@ -1,18 +1,20 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
+const serverPublic = path.join(__dirname, 'server', 'public');
+
 module.exports = {
-    entry: './scripts/app.js',
+    entry: './client/scripts/app.js',
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: serverPublic,
         filename: 'bundle.js',
     },
     plugins: [
         new CopyWebpackPlugin([
-            { context: '.', from: '*.html' },
-            { context: '.', from: 'templates/**/*.html' },
-            { context: '.', from: 'css/**/*.css' },
-            { context: '.', from: 'assets/**/*.gif' }
+            { context: './client', from: '*.html' },
+            { context: './client', from: 'templates/**/*.html' },
+            { context: './client', from: 'css/**/*.css' },
+            { context: './client', from: 'assets/**/*.gif' }
         ])
     ],
     module: {
@@ -26,6 +28,6 @@ module.exports = {
     },
     devtool: 'source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: serverPublic
     }
 };
