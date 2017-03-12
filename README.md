@@ -45,8 +45,8 @@ This repo is a little application to browse GitHub repos.
 * Support deep linking
 * ~~Convert JavaScript code to es2015~~
 * Reorganise JavaScript files into subfolders
-* Convert directives to components
-* Convert controllers to components
+* ~~Convert directives to components~~
+* ~~Convert Home controller to a component~~
 * ~~Use webpack to bundle the JavaScript files~~
 * Bundle css files
 * Bundle font files

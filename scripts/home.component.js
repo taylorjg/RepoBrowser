@@ -1,19 +1,18 @@
 import app from './app.module';
 import * as C from './app.constants';
 
-class HomeController {
-    constructor(GitHubApiService, RateLimitStateService) {
+class Controller {
+    constructor(GitHubApiService) {
         this.GitHubApiService = GitHubApiService;
-        this.repos = [];
-        this.user = null;
+        this.username = null;
         this.sortBy = C.DEFAULT_SORT_BY;
         this.sortDirection = C.DEFAULT_SORT_DIRECTION;
         this.pageSize = C.DEFAULT_PAGE_SIZE;
         this.numPages = 0;
         this.currentPage = null;
         this.selectedRepo = null;
-        this.username = null;
-        this.rateLimitState = RateLimitStateService;
+        this.user = null;
+        this.repos = [];
     }
 
     onLookup(username, sortBy, sortDirection, pageSize) {
@@ -23,7 +22,7 @@ class HomeController {
         this.pageSize = pageSize;
         this.currentPage = 1;
         this.getRepos();
-        this.getUser(username);
+        this.getUser();
     }
 
     onRepoSelected(repo) {
@@ -52,13 +51,20 @@ class HomeController {
             });
     }
 
-    getUser(username) {
+    getUser() {
         this.GitHubApiService.getUser(this.username)
             .then(user => this.user = user)
             .catch(_ => this.user = null);
     }
 };
 
-HomeController.$inject = ['GitHubApiService', 'RateLimitStateService'];
+Controller.$inject = ['GitHubApiService'];
 
-app.controller(HomeController.name, HomeController);
+const home = {
+    selector: 'home',
+    templateUrl: 'templates/home.component.html',
+    controller: Controller,
+    controllerAs: 'vm'
+};
+
+app.component(home.selector, home);

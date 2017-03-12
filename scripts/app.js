@@ -7,7 +7,7 @@ import './spinner.interceptor';
 import './authenticationState.service';
 import './githubapi.service';
 import './rateLimitState.service';
-import './home.controller';
+import './home.component';
 import './errorPanel.component';
 import './repoDetails.component';
 import './repoSummary.component';
