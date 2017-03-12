@@ -44,7 +44,14 @@ This repo is a little application to browse GitHub repos.
 * Add end-to-end tests (Protractor)
 * Support deep linking
 * ~~Convert JavaScript code to es2015~~
+* Reorganise JavaScript files into subfolders
+* Convert directives to components
+* Convert controllers to components
 * ~~Use webpack to bundle the JavaScript files~~
+* Bundle css files
+* Bundle font files
+* Bundle HTML template files ?
+* Uglify/minify
 
 ## Screenshots
 
