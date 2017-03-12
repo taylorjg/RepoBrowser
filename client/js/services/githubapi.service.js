@@ -1,5 +1,5 @@
-import app from './app.module';
-import * as C from './app.constants';
+import app from '../app.module';
+import * as C from '../app.constants';
 
 const languagesObjectToLanguagesArray = languagesObject => {
     const ks = Object.keys(languagesObject);

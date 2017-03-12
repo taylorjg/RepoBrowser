@@ -1,4 +1,4 @@
-import app from './app.module';
+import app from '../app.module';
 
 const XRateLimitLimit = 'X-RateLimit-Limit';
 const XRateLimitRemaining = 'X-RateLimit-Remaining';

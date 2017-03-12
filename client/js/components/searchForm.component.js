@@ -1,5 +1,5 @@
-import app from './app.module';
-import * as C from './app.constants';
+import app from '../app.module';
+import * as C from '../app.constants';
 
 const DEFAULT_USERNAME = 'taylorjg';
 const DEFAULT_SORT_BY = 'full_name';
