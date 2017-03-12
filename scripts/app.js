@@ -9,6 +9,7 @@ import './githubapi.service';
 import './rateLimitState.service';
 import './home.component';
 import './errorPanel.component';
+import './rateLimitDetails.component';
 import './repoDetails.component';
 import './repoSummary.component';
 import './searchForm.component';

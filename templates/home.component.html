@@ -45,11 +45,7 @@
             <repo-details repo="vm.selectedRepo"></repo-details>
         </div>
     </div>
-    <div class="row" ng-show="vm.rateLimitState.limit">
-        <div class="text-center">
-            <i>(limit: {{ vm.rateLimitState.limit }},
-                remaining: {{ vm.rateLimitState.remaining }},
-                reset: {{ vm.rateLimitState.reset | date:'medium' }})</i>
-        </div>
+    <div class="row">
+        <rate-limit-details></rate-limit-details>
     </div>
 </div>

@@ -1,0 +1,5 @@
+<div class="text-center" ng-show="vm.RateLimitStateService.limit">
+    <i>(limit: {{ vm.RateLimitStateService.limit }},
+        remaining: {{ vm.RateLimitStateService.remaining }},
+        reset: {{ vm.RateLimitStateService.reset | date:'medium' }})</i>
+</div>
