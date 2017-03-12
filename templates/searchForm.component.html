@@ -3,8 +3,8 @@
     <div class="form-group" ng-class="vm.feedbackClasses()">
         <label class="control-label" for="token">GitHub OAuth Token:</label>
         <input class="form-control" id="token" type="text" ng-model="vm.AuthenticationStateService.token">
-        <span ng-show="vm.AuthenticationStateService.getTokenIsGood()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-        <span ng-show="vm.AuthenticationStateService.getTokenIsBad()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="vm.AuthenticationStateService.tokenIsValid()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="vm.AuthenticationStateService.tokenIsInvalid()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group">

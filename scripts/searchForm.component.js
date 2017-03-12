@@ -1,4 +1,5 @@
 import app from './app.module';
+import * as C from './app.constants';
 
 const DEFAULT_USERNAME = 'taylorjg';
 const DEFAULT_SORT_BY = 'full_name';
@@ -25,9 +26,9 @@ class Controller {
 
     feedbackClasses() {
         return {
-            'has-feedback': this.AuthenticationStateService.getTokenIsGood() || this.AuthenticationStateService.getTokenIsBad(),
-            'has-success': this.AuthenticationStateService.getTokenIsGood(),
-            'has-error': this.AuthenticationStateService.getTokenIsBad(),
+            'has-feedback': this.AuthenticationStateService.tokenState !== C.TOKEN_STATE_NONE,
+            'has-success': this.AuthenticationStateService.tokenState === C.TOKEN_STATE_VALID,
+            'has-error': this.AuthenticationStateService.tokenState === C.TOKEN_STATE_INVALID
         };
     }
 };

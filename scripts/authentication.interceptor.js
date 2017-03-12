@@ -33,7 +33,7 @@ class AuthenticationInterceptor {
     onResponse(response) {
         if (this.isGutHubApiRequest(response.config)) {
             if (this.AuthenticationStateService.token) {
-                this.AuthenticationStateService.setTokenIsGood();
+                this.AuthenticationStateService.setTokenIsValid();
             }
             else {
                 this.AuthenticationStateService.reset();
@@ -46,9 +46,9 @@ class AuthenticationInterceptor {
         if (this.isGutHubApiRequest(rejection.config)) {
             if (this.AuthenticationStateService.token) {
                 if (rejection.status === 401)
-                    this.AuthenticationStateService.setTokenIsBad();
+                    this.AuthenticationStateService.setTokenIsInvalid();
                 else
-                    this.AuthenticationStateService.setTokenIsGood();
+                    this.AuthenticationStateService.setTokenIsValid();
             }
             else {
                 this.AuthenticationStateService.reset();

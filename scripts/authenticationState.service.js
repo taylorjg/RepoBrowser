@@ -1,34 +1,31 @@
 import app from './app.module';
+import * as C  from './app.constants';
 
 class AuthenticationStateService {
 
     constructor() {
-        this.tokenIsGood = false;
-        this.tokenIsBad = false;
+        this.tokenState = C.TOKEN_STATE_NONE;
         this.token = null;
     }
 
-    getTokenIsGood() {
-        return this.tokenIsGood;
+    setTokenIsValid() {
+        this.tokenState = C.TOKEN_STATE_VALID;
     }
 
-    getTokenIsBad() {
-        return this.tokenIsBad;
+    setTokenIsInvalid() {
+        this.tokenState = C.TOKEN_STATE_INVALID;
     }
 
-    setTokenIsGood() {
-        this.tokenIsGood = true;
-        this.tokenIsBad = false;
+    tokenIsValid() {
+        return this.tokenState === C.TOKEN_STATE_VALID;
     }
 
-    setTokenIsBad() {
-        this.tokenIsGood = false;
-        this.tokenIsBad = true;
+    tokenIsInvalid() {
+        return this.tokenState === C.TOKEN_STATE_INVALID;
     }
 
     reset() {
-        this.tokenIsGood = false;
-        this.tokenIsBad = false;
+        this.tokenState = C.TOKEN_STATE_NONE;
         this.token = null;
     }
 }
