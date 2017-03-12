@@ -4,10 +4,6 @@ import * as C from './app.constants';
 class Controller {
     constructor(GitHubApiService) {
         this.GitHubApiService = GitHubApiService;
-        this.username = null;
-        this.sortBy = C.DEFAULT_SORT_BY;
-        this.sortDirection = C.DEFAULT_SORT_DIRECTION;
-        this.pageSize = C.DEFAULT_PAGE_SIZE;
         this.numPages = 0;
         this.currentPage = null;
         this.selectedRepo = null;

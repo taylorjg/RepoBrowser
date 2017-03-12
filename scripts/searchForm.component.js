@@ -1,13 +1,17 @@
 import app from './app.module';
-import * as C from './app.constants';
+
+const DEFAULT_USERNAME = 'taylorjg';
+const DEFAULT_SORT_BY = 'full_name';
+const DEFAULT_SORT_DIRECTION = 'asc';
+const DEFAULT_PAGE_SIZE = 5;
 
 class Controller {
     constructor(AuthenticationStateService) {
         this.AuthenticationStateService = AuthenticationStateService;
-        this.username = 'taylorjg';
-        this.sortBy = C.DEFAULT_SORT_BY;
-        this.sortDirection = C.DEFAULT_SORT_DIRECTION;
-        this.pageSize = String(C.DEFAULT_PAGE_SIZE);
+        this.username = DEFAULT_USERNAME;
+        this.sortBy = DEFAULT_SORT_BY;
+        this.sortDirection = DEFAULT_SORT_DIRECTION;
+        this.pageSize = String(DEFAULT_PAGE_SIZE);
     }
 
     onFormSubmit() {

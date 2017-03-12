@@ -1,8 +1,8 @@
 <form name="form" novalidate>
 
     <div class="form-group" ng-class="vm.feedbackClasses()">
-        <label class="control-label" for="token">GitHub OAuth token:</label>
-        <input class="form-control" id="token" type="text" ng-model="vm.AuthenticationStateService.token" required>
+        <label class="control-label" for="token">GitHub OAuth Token:</label>
+        <input class="form-control" id="token" type="text" ng-model="vm.AuthenticationStateService.token">
         <span ng-show="vm.AuthenticationStateService.getTokenIsGood()" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
         <span ng-show="vm.AuthenticationStateService.getTokenIsBad()" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
     </div>
