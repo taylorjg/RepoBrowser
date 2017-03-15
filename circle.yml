@@ -1,0 +1,9 @@
+test:
+  override:
+    - true
+
+deployment:
+  heroku:
+    branch: master
+    heroku:
+      appname: repobrowser
