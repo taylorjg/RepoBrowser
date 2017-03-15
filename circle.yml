@@ -1,6 +1,6 @@
 test:
   override:
-    true
+    - echo "overriding..."
 
 deployment:
   heroku:
