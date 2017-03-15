@@ -1,6 +1,6 @@
 test:
   override:
-    - true
+    true
 
 deployment:
   heroku:
