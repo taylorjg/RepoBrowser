@@ -59,7 +59,9 @@ Controller.$inject = ['GitHubApiService'];
 const home = {
     selector: 'home',
     templateUrl: 'templates/home.component.html',
-    controller: Controller,
+    bindings: {
+        version: '@'
+    }, controller: Controller,
     controllerAs: 'vm'
 };
 

@@ -1,5 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const packageJson = require('./package.json');
 
 const serverPublic = path.join(__dirname, 'server', 'public');
 
@@ -15,7 +17,11 @@ module.exports = {
             { context: './client', from: 'templates/**/*.html' },
             { context: './client', from: 'css/**/*.css' },
             { context: './client', from: 'assets/**/*.gif' }
-        ])
+        ]),
+        new HtmlWebpackPlugin({
+            template: './client/index.html',
+            version: packageJson.version
+        })
     ],
     module: {
         rules: [

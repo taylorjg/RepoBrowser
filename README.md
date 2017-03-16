@@ -1,6 +1,13 @@
+[![CircleCI](https://circleci.com/gh/taylorjg/RepoBrowser.svg?style=svg)](https://circleci.com/gh/taylorjg/RepoBrowser)
+
 ## Description
 
 This repo is a little application to browse GitHub repos.
+
+## Try it out
+
+[Try it on Heroku](https://repobrowser.herokuapp.com/)
+(_it may take 10s to re-activate_)
 
 ## TODO
 
