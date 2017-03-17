@@ -4,8 +4,8 @@ const repoSummary = {
     selector: 'repoSummary',
     templateUrl: 'templates/repoSummary.component.html',
     bindings: {
-        repo: '=',
-        selectedRepo: '=',
+        repo: '<',
+        selectedRepo: '<',
         onRepoSelected: '&'
     },
     controllerAs: 'vm'

@@ -4,7 +4,7 @@ const userDetails = {
     selector: 'userDetails',
     templateUrl: 'templates/userDetails.component.html',
     bindings: {
-        user: '='
+        user: '<'
     },
     controllerAs: 'vm'
 };

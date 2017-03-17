@@ -4,7 +4,7 @@ const repoDetails = {
     selector: 'repoDetails',
     templateUrl: 'templates/repoDetails.component.html',
     bindings: {
-        repo: '='
+        repo: '<'
     },
     controllerAs: 'vm'
 };
